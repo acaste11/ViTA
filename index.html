@@ -11,54 +11,52 @@
       <img src="logo.png" alt="logo">
       <h1 id="title">Pedido VITA:</h1>
     </header>
-      <p id="description">
-        Realize su pedido VITA con el siguiente formulario:
-      </p>
+      <p id="description">ViTA es vida</p>
 
     <nav>
       <a href="#" onclick="showContent('vita')">Sobre VITA</a>
       <a href="#" onclick="showContent('productos')">Productos</a>
-      <a href="#" onclick="showCoontent('pedidos')">Pedidos</a>
-      <a href="#" onclick="showCoontent('unirse')">¡Únete!</a>
+      <a href="#" onclick="showContent('pedidos')">Pedidos</a>
+      <a href="#" onclick="showContent('unirse')">¡Únete!</a>
     </nav>
+
     <main>
       <div id="vita" class="content active">
-        <h2>Quiénes somos?</h2>
+        <h2>¿Quiénes somos?</h2>
         <div class="home-content">
           <img src="empresa.jpg" alt="quiénes somos">
           <div class="text">
-            <p>Laboratorios ViTA es una empresa farmacéutica con 82 años de vida. Inició sus operaciones en marzo 1936
-            </p>
+            <p>Laboratorios ViTA es una empresa farmacéutica con 82 años de vida. Inició sus operaciones en marzo 1936.</p>
           </div>
         </div>
       </div>
+
       <div id="productos" class="content">
         <h2>Productos</h2>
         <div class="productos-imagenes">
           <div class="productos-item">
             <a href="https://vita.com.bo/categoria-producto/vita-farma/">
-              <img src="farma.jpg">
+              <img src="farma.jpg" alt="Farma">
               <h3>ViTA Farma</h3>
             </a>
           </div>
           <div class="productos-item">
             <a href="https://vita.com.bo/categoria-producto/vita-belleza/">
-              <img src="belleza.jpg">
+              <img src="belleza.jpg" alt="belleza">
               <h3>ViTA Belleza</h3>
             </a>
           </div>
           <div class="productos-item">
             <a href="https://vita.com.bo/categoria-producto/vita-hogar/">
-              <img src="hogar.jpg">
+              <img src="hogar.jpg" alt="hogar">
               <h3>ViTA Hogar</h3>
             </a>
-          </div>"
+          </div>
         </div>
       </div>
 
       <div id="pedidos" class="content">
         <h2>Realice su pedido hoy:</h2>
-
         <form id="survey-form">
           <label id="name-label">Nombre: 
             <input id="name" type="text" name="name" placeholder="Jaime" required>
@@ -70,20 +68,12 @@
             <input id="email" type="email" name="email-label" pattern=".+@example\.com" size="30" placeholder="jrodriguez@gmail.com" required>
           </label>
      
-          <label>Seleccione categoria(s) de producto:
-            <label>
-              <input type="checkbox" value="survey-form">
-              Farmacia
-            </label>
-            <label>
-              <input type="checkbox" value="survey-form">
-              Belleza
-            </label>
-            <label>
-              <input type="checkbox" value="survey-form">
-              Hogar
-            </label>
-          </label>
+          <fieldset>
+            <legend>Seleccione categoría(s) de producto:</legend>
+            <label><input type="checkbox" name="categoria" value="farmacia"> Farmacia</label>
+            <label><input type="checkbox" name="categoria" value="belleza"> Belleza</label>
+            <label><input type="checkbox" name="categoria" value="hogar"> Hogar</label>
+          </fieldset>
     
           <label> Producto(s):
             <textarea id="bio" max="50"></textarea>
@@ -102,14 +92,15 @@
             </select>
           </label>
     
-          <label>Metodo de entrega: </label>
-            <input type="radio" value="entrega" name="metodo"> Entrega
-            <input type="radio" value="recogida" name="metodo"> Recogida 
-            <input type="radio" value="distribución" name="metodo"> Distribución 
-          </label>
+          <fieldset>
+            <legend>Método de entrega:</legend>
+            <label><input type="radio" value="entrega" name="metodo"> Entrega</label>
+            <label><input type="radio" value="recogida" name="metodo"> Recogida</label>
+            <label><input type="radio" value="distribución" name="metodo"> Distribución</label>
+          </fieldset>
     
           <label> Codigo (opcional):
-            <textarea id="bio" max="50"></textarea>
+            <textarea id="pedidio-codigo" maxlength="50"></textarea>
           </label>
     
           <button id="submit" type="submit"> Enviar</button>
@@ -118,23 +109,33 @@
       </div>
 
       <div id="unirse" class="content">
-        <h2>Porque distribuir productos VITA?</h2>
+        <h2>¿Porque distribuir productos VITA?</h2>
         <ul>
           <li>Recomiende a sus clientes los productos de mejor calidad para su salud.</li>
           <li>Gane un porcentaje de las ventas generadas cuando sus clientes utilicen su código personalizado.</li>
           <li>Únase como miembro a nuestro sistema de beneficios, donde el tiempo que comparte con nosotros se traduce en recompensas.</li>
           <li>Entérese primero de nuestros nuevos productos y novedades.</li>
         </ul>
+
         <form>
           <label id="name-label">Nombre: 
-            <input id="name" type="text" name="name" placeholder="Jaime Rodriguez" required>
+            <input id="join-name" type="text" name="name" placeholder="Jaime Rodriguez" required>
           </label>
           <label id="email-label">Correo electrónico: 
-            <input id="email" type="email" name="email-label" pattern=".+@example\.com" size="30" placeholder="jrodriguez@gmail.com" required>
+            <input id="join-email" type="email" name="email" size="30" placeholder="jrodriguez@gmail.com" required>
           </label>
           <button id="submit" type="submit"> Solicitar información</button>
         </form>
       </div>
     </main>
+
+    <script>
+      function showContent(id) {
+        const sections = document.querySelectorAll('.content');
+        sections.forEach(section => section.classList.remove('active'));
+        const selected = document.getElementById(id);
+        if(selected) selected.classList.add('active');
+      }
+    </script>
   </body>
 </html>
