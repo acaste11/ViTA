@@ -1,37 +1,164 @@
 body {
-    background-color: #2a70ae;
-    color: white;
-  }
-  
-  h1, p {
-    text-align: center;
-    margin: 30px;
-  }
-  
-  label {
-    display: block;
-    padding: 10px;
-  }
-  
-  option {
-    text-align: center;
-  }
-  
-  button {
-    display: block;
-    margin: 10px;
-  }
-  
-  textarea {
-    resize: vertical;
-    margin: 10px;
-    display: block;
-    width: 30%
-  }
-  
-  form {
-    color: black;
-    max-width: 400px;
-    margin: 20px auto;
-    background: #fff;
-  }
+  background-color: #2a70ae;
+  color: #EFEBE1;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #7c9dca;
+  color: #070706;
+  padding: 1em 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+header img {
+  max-width: 100px;
+  height: auto;
+  margin-right: 20px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: #EFEBE1;
+}
+
+nav a {
+  color: #EFEBE1;
+  padding: 1em;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+nav a:hover {
+  background-color: #2a70ae;
+}
+
+label {
+  display: block;
+  padding: 10px;
+}
+
+option {
+  text-align: center;
+}
+
+button {
+  display: block;
+  margin: 10px;
+}
+
+textarea {
+  resize: vertical;
+  margin: 10px;
+  display: block;
+  width: 30%
+}
+
+form {
+  color: black;
+  max-width: 400px;
+  margin: 20px auto;
+  background: #fff;
+}
+
+
+
+
+main {
+  padding: 2em;
+  text-align: center;
+}
+.content {
+  display: none;
+}
+.content.active {
+  display: block;
+}
+.contact-image {
+  margin: 20px;
+}
+.home-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  text-align: left;
+  padding: 1em;
+}
+.home-content img {
+  max-width: 45%;
+  height: auto;
+  flex: 1 1 auto;
+}
+.home-content h2 {
+  text-align: center;
+  width: 100%;
+}
+.home-content .text {
+  width: 45%;
+  flex: 1 1 auto;
+}
+
+
+.productos-imagenes{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  text-align: left;
+  padding: 1em;
+}
+.productos-imagenes .productos-item {
+  width: 300px;
+  background-color: #9DA48E;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.productos-item img {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 1em;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+h3 {
+  margin: 10px 0 0 0;
+  font-size: 1.2em;
+  color:white;
+  text-align: center;
+}
+
+footer {
+  background-color: #7c9dca;
+  color: azure;
+  text-align: center;
+  padding: 1em 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+img {
+  max-width: 500px;
+  height: auto;
+}
