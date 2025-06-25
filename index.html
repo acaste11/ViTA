@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  
+  <body>
+    <header>
+      <img src="logo.png" alt="logo">
+      <h1 id="title">Pedido VITA:</h1>
+    </header>
+      <p id="description">
+        Realize su pedido VITA con el siguiente formulario:
+      </p>
+
+    <nav>
+      <a href="#" onclick="showContent('vita')">Sobre VITA</a>
+      <a href="#" onclick="showContent('productos')">Productos</a>
+      <a href="#" onclick="showCoontent('pedidos')">Pedidos</a>
+      <a href="#" onclick="showCoontent('unirse')">¡Únete!</a>
+    </nav>
+    <main>
+      <div id="vita" class="content active">
+        <h2>Quiénes somos?</h2>
+        <div class="home-content">
+          <img src="empresa.jpg" alt="quiénes somos">
+          <div class="text">
+            <p>Laboratorios ViTA es una empresa farmacéutica con 82 años de vida. Inició sus operaciones en marzo 1936
+            </p>
+          </div>
+        </div>
+      </div>
+      <div id="productos" class="content">
+        <h2>Productos</h2>
+        <div class="productos-imagenes">
+          <div class="productos-item">
+            <a href="https://vita.com.bo/categoria-producto/vita-farma/">
+              <img src="farma.jpg">
+              <h3>ViTA Farma</h3>
+            </a>
+          </div>
+          <div class="productos-item">
+            <a href="https://vita.com.bo/categoria-producto/vita-belleza/">
+              <img src="belleza.jpg">
+              <h3>ViTA Belleza</h3>
+            </a>
+          </div>
+          <div class="productos-item">
+            <a href="https://vita.com.bo/categoria-producto/vita-hogar/">
+              <img src="hogar.jpg">
+              <h3>ViTA Hogar</h3>
+            </a>
+          </div>"
+        </div>
+      </div>
+
+      <div id="pedidos" class="content">
+        <h2>Realice su pedido hoy:</h2>
+
+        <form id="survey-form">
+          <label id="name-label">Nombre: 
+            <input id="name" type="text" name="name" placeholder="Jaime" required>
+          </label>
+          <label id="name-label">Apellido: 
+            <input id="name" type="text" name="name" placeholder="Rodriguez" required>
+          </label>
+          <label id="email-label">Correo electrónico: 
+            <input id="email" type="email" name="email-label" pattern=".+@example\.com" size="30" placeholder="jrodriguez@gmail.com" required>
+          </label>
+     
+          <label>Seleccione categoria(s) de producto:
+            <label>
+              <input type="checkbox" value="survey-form">
+              Farmacia
+            </label>
+            <label>
+              <input type="checkbox" value="survey-form">
+              Belleza
+            </label>
+            <label>
+              <input type="checkbox" value="survey-form">
+              Hogar
+            </label>
+          </label>
+    
+          <label> Producto(s):
+            <textarea id="bio" max="50"></textarea>
+          </label>
+    
+          <label id="number-label"> Cantidad: 
+            <input id="number" type="number" name="number-label" min="1" max="200" placeholder="1" required>
+          </label>
+    
+          <label for="hall">Seleccione una opción:
+            <select id="dropdown">
+              <option>(seleccionar)</option>
+              <option>Empresa/banco</option>
+              <option>Farmacia</option>
+              <option>Cliente individual</option>
+            </select>
+          </label>
+    
+          <label>Metodo de entrega: </label>
+            <input type="radio" value="entrega" name="metodo"> Entrega
+            <input type="radio" value="recogida" name="metodo"> Recogida 
+            <input type="radio" value="distribución" name="metodo"> Distribución 
+          </label>
+    
+          <label> Codigo (opcional):
+            <textarea id="bio" max="50"></textarea>
+          </label>
+    
+          <button id="submit" type="submit"> Enviar</button>
+        </form>
+
+      </div>
+
+      <div id="unirse" class="content">
+        <h2>Porque distribuir productos VITA?</h2>
+        <ul>
+          <li>Recomiende a sus clientes los productos de mejor calidad para su salud.</li>
+          <li>Gane un porcentaje de las ventas generadas cuando sus clientes utilicen su código personalizado.</li>
+          <li>Únase como miembro a nuestro sistema de beneficios, donde el tiempo que comparte con nosotros se traduce en recompensas.</li>
+          <li>Entérese primero de nuestros nuevos productos y novedades.</li>
+        </ul>
+        <form>
+          <label id="name-label">Nombre: 
+            <input id="name" type="text" name="name" placeholder="Jaime Rodriguez" required>
+          </label>
+          <label id="email-label">Correo electrónico: 
+            <input id="email" type="email" name="email-label" pattern=".+@example\.com" size="30" placeholder="jrodriguez@gmail.com" required>
+          </label>
+          <button id="submit" type="submit"> Solicitar información</button>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>
