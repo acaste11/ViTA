@@ -1,4 +1,4 @@
-/* Reset and base styles */
+/* Reset */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,10 +7,9 @@
 }
 
 body {
-  line-height: 1.6;
-  background-color: #f9f9f9;
-  color: #333;
   padding: 20px;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
 /* Header */
@@ -30,10 +29,8 @@ header img {
   color: #0066cc;
 }
 
-/* Description */
 #description {
-  margin-bottom: 20px;
-  font-size: 1.2em;
+  margin: 10px 0 20px;
 }
 
 /* Navigation */
@@ -64,6 +61,7 @@ nav a:hover {
   display: block;
 }
 
+/* Home content */
 .home-content {
   display: flex;
   gap: 20px;
@@ -80,25 +78,21 @@ nav a:hover {
   line-height: 1.5;
 }
 
-/* Products */
+/* Products section */
 .productos-imagenes {
   display: flex;
-  gap: 20px;
   flex-wrap: wrap;
+  gap: 20px;
 }
 
 .productos-item {
-  text-align: center;
   width: 200px;
+  text-align: center;
 }
 
 .productos-item img {
   width: 100%;
   border-radius: 10px;
-}
-
-.productos-item h3 {
-  margin-top: 5px;
 }
 
 /* Forms */
@@ -124,9 +118,14 @@ textarea {
   height: 60px;
 }
 
+fieldset {
+  border: none;
+  padding: 0;
+}
+
 input[type="radio"],
 input[type="checkbox"] {
-  margin-right: 8px;
+  margin-right: 5px;
 }
 
 button {
