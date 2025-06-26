@@ -57,54 +57,10 @@
 
       <div id="pedidos" class="content">
         <h2>Realice su pedido hoy:</h2>
-        <form id="survey-form">
-          <label id="name-label">Nombre: 
-            <input id="name" type="text" name="name" placeholder="Jaime" required>
-          </label>
-          <label id="name-label">Apellido: 
-            <input id="name" type="text" name="name" placeholder="Rodriguez" required>
-          </label>
-          <label id="email-label">Correo electrónico: 
-            <input id="email" type="email" name="email-label" pattern=".+@example\.com" size="30" placeholder="jrodriguez@gmail.com" required>
-          </label>
-     
-          <fieldset>
-            <legend>Seleccione categoría(s) de producto:</legend>
-            <label><input type="checkbox" name="categoria" value="farmacia"> Farmacia</label>
-            <label><input type="checkbox" name="categoria" value="belleza"> Belleza</label>
-            <label><input type="checkbox" name="categoria" value="hogar"> Hogar</label>
-          </fieldset>
-    
-          <label> Producto(s):
-            <textarea id="bio" max="50"></textarea>
-          </label>
-    
-          <label id="number-label"> Cantidad: 
-            <input id="number" type="number" name="number-label" min="1" max="200" placeholder="1" required>
-          </label>
-    
-          <label for="hall">Seleccione una opción:
-            <select id="dropdown">
-              <option>(seleccionar)</option>
-              <option>Empresa/banco</option>
-              <option>Farmacia</option>
-              <option>Cliente individual</option>
-            </select>
-          </label>
-    
-          <fieldset>
-            <legend>Método de entrega:</legend>
-            <label><input type="radio" value="entrega" name="metodo"> Entrega</label>
-            <label><input type="radio" value="recogida" name="metodo"> Recogida</label>
-            <label><input type="radio" value="distribución" name="metodo"> Distribución</label>
-          </fieldset>
-    
-          <label> Codigo (opcional):
-            <textarea id="pedidio-codigo" maxlength="50"></textarea>
-          </label>
-    
-          <button id="submit" type="submit"> Enviar</button>
-        </form>
+        <h3>¿Aparte de quién sera el pedido?</h3>
+        <a href="empresa.html">
+          <button>Empresa</button>
+        </a>
 
       </div>
 
