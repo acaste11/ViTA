@@ -143,6 +143,7 @@ nav a.content.active{
   border-radius: 12px;
   padding: 15px;
   transition: transform 0.2s, background-color 0.3s;
+  overflow: hidden;
 }
 
 .product-button:hover {
@@ -151,9 +152,12 @@ nav a.content.active{
 }
 
 .product-button img {
-  height: 100px;
+  width: 100%;
+  max-width: 120px;
+  height: auto;
   margin-bottom: 10px;
   object-fit: contain;
+  border-radius: 8px;
 }
 
 .product-button span {
