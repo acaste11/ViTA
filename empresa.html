@@ -12,35 +12,32 @@
             <h1>¿Con quién tenemos el gusto?</h1>
         </header>
         <main>
-            <form id="login">
-                <label for="empresa">Seleccione su empresa:
-                    <select id="dropdown">
-                      <option>(seleccionar)</option>
-                      <option>Banco Unión</option>
-                      <option>BCP</option>
-                      <option>X</option>
-                      <option>Y</option>
-                      <option>Z</option>
-                    </select>
-                  </label>
-                  <label id="name-label">Su nombre: 
-                    <input id="name" type="text" name="name" placeholder="Jaime" required>
-                  </label>
-                  <label id="name-label">Su apellido: 
-                    <input id="name" type="text" name="name" placeholder="Rodriguez" required>
-                  </label>
-                  <label id="name-label">Codigo de usuario: 
-                    <input id="code" type="text" name="code" placeholder="C1234567" required>
-                  </label>
-
-                  <a href="successE.html">
-                    <button id="submit" type="submit">Siguiente</button>
-                  </a>
-            </form>
+            <form id="login" action="successE.html" method="get">
+                <label for="dropdown">Seleccione su empresa:
+                  <select id="dropdown" name="empresa" required>
+                    <option value="">(seleccionar)</option>
+                    <option>Banco Unión</option>
+                    <option>BCP</option>
+                    <option>X</option>
+                    <option>Y</option>
+                    <option>Z</option>
+                  </select>
+                </label>
+          
+                <label for="name">Su nombre: 
+                  <input id="name" type="text" name="nombre" placeholder="Jaime" required>
+                </label>
+          
+                <label for="apellido">Su apellido: 
+                  <input id="apellido" type="text" name="apellido" placeholder="Rodriguez" required>
+                </label>
+          
+                <label for="code">Código de usuario: 
+                  <input id="code" type="text" name="code" placeholder="C1234567" required>
+                </label>
+          
+                <button id="submit" type="submit">Siguiente</button>
+              </form>
         </main>
     </body>
-
-
-
-    
 </html>
