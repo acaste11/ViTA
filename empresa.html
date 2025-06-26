@@ -12,7 +12,7 @@
             <h1>¿Con quién tenemos el gusto?</h1>
         </header>
         <main>
-            <form id="login" action="successE.html" method="get">
+            <form id="login" action="successE.html" method="get" onsubmit="validateUser(event)">
                 <label for="dropdown">Seleccione su empresa:
                   <select id="dropdown" name="empresa" required>
                     <option value="">(seleccionar)</option>
@@ -38,6 +38,33 @@
           
                 <button id="submit" type="submit">Siguiente</button>
               </form>
+
+              <script>
+                const validUsers = [
+                    { name: "Jaime", apellido: "Rodriguez", code: "C123456"},
+                    { name: "Analia", apellido: "Castellanos", code: "C654321"}
+                ];
+
+                function validateUser(event) {
+                    event.preventDefault();
+                    const name = document.getElementById("name").value.trim();
+                    const apellido = document.getElementById("apellido").value.trim();
+                    const code = document.getElementById("code").value.trim();
+
+                    const match = validUsers.find(user =>
+                        user.name.toLowerCase() === name.toLowerCase() &&
+                        user.code === code
+                    );
+
+                    if (match) {
+                        localStorage.setItem("authorized", "true");
+                        window.location.href = "form.html";
+                    }
+                    else {
+                        alert("Información incorrecta");
+                    }
+                }
+              </script>
         </main>
     </body>
 </html>
