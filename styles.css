@@ -128,6 +128,30 @@ nav a.content.active{
   font-size: 1.1em;
 }
 
+.product-entry {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.product-entry label {
+  flex: 1;
+}
+
+.product-entry button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product-entry button:hover {
+  background-color: #cc0000;
+}
+
 /* Forms */
 form {
   display: flex;
@@ -189,3 +213,4 @@ button:hover {
   margin-top: 10px;
   list-style: disc;
 }
+
