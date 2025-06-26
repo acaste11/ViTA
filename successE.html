@@ -13,7 +13,7 @@
         </header>
 
         <main>
-            <form id="survey-form" action="success.html" method="get">
+            <form id="survey-form" onsubmit="sendToGoogleSheet(event)">
                 <label for="nombre">Nombre: 
                   <input id="nombre" type="text" name="nombre" placeholder="Jaime" required>
                 </label>
@@ -90,6 +90,7 @@
               <label>Cantidad:
                 <input type="number" name="productQty[]" min="1" required>
               </label>
+              <button type="button" onclick="removeProduct(this)">x Quitar este producto</button>
             `;
 
             container.insertBefore(productDiv, container.lastElementChild);
@@ -102,6 +103,56 @@
 
           if (localStorage.getItem("authorized") !== "true") {
             window.location.href = "empresa.html";
+          }
+
+          document.getElementById('survey-form').addEventListener('submit', () =>{
+            localStorage.removeItem("authorized");
+          })
+
+          //send info to google sheet
+          const scriptURL = 'https://script.google.com/macros/s/AKfycbyCeUDbiPVkyUWiseQoKBZp0RSBz0XKQ3bQ2yb0m0IhPYFSf84ro6-OzolxMiT0QR4C/exec';
+          
+          function sendToGoogleSheet(event) {
+            event.preventDefault();
+
+            const form = document.getElementById("survey-form");
+            const formData = new FormData(form);
+
+            const nombre = formData.get("nombre");
+            const apellido = formData.get("apellido");
+            const email = formData.get("email");
+            const metodo = formData.get("metodo");
+
+            const productNames = formData.getAll("productName[]");
+            const productQtys = formData.getAll("productQty[]");
+
+            const products = productNames.map((nombre, i) => ({
+              nombre,
+              cantidad: productQtys[i]
+            }));
+
+            fetch(scriptURL, {
+              method: 'POST',
+              body: JSON.stringify({
+                nombre,
+                apellido,
+                email,
+                metodo,
+                products
+              }),
+              headers: {
+                'Content-Type': 'applications/json'
+              }
+            })
+            .then(res => {
+              alert("¡Pedido enviado con éxito!");
+              form.reset();
+              localStorage.removeItem("authorized");
+            })
+            .catch(err => {
+              alert("error al enviar el pedido. Intente nuevamente.");
+              console.error(err);
+            });
           }
         </script>
     </body>
