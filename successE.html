@@ -14,31 +14,29 @@
 
         <main>
             <form id="survey-form" onsubmit="sendToGoogleSheet(event)">
-                <label for="nombre">Nombre: 
-                  <input id="nombre" type="text" name="nombre" placeholder="Jaime" required>
+                <label for="empresa">Nombre de empresa:
+                    <input id="empresa-nombre" type="text" name="empresa-nombre" placeholder="ViTA Laboratorios" required>
                 </label>
 
-                <label for="apellido">Apellido: 
-                  <input id="apellido" type="text" name="apellido" placeholder="Rodriguez" required>
-                </label>
-
-                <label for="email">Correo electrónico: 
-                  <input id="email" type="email" name="email" size="30" placeholder="jrodriguez@gmail.com" required>
+                <label for="cuidad">Cuidad:
+                    <input id="cuidad-nombre" type="text" name="cuidad-nombre" placeholder="La Paz" required>
                 </label>
                 
                 
                 <div id="product-section">
                   <h3>Productos</h3>
 
-                  <h4>¿Le hacemos recuerdo de que productos tenemos?</h4>
+                  <h4>Conozca nuestros productos:</h4>
 
                   <div class="product-grid">
                       <a href="https://vita.com.bo/categoria-producto/vita-belleza/" target="_blank" rel="noopener noreferrer" class="product-button">
                         <img src="shampoo.png" alt="Belleza">
+                        <span>Belleza</span>
                       </a>
                       
                       <a href="https://vita.com.bo/categoria-producto/vita-hogar/" target="_blank" rel="noopener noreferrer" class="product-button">
                         <img src="purificador.png" alt="Purificador Lorito">
+                        <span>Hogar</span>
                       </a>
                       
                       <a href="https://vita.com.bo/digestan/" target="_blank" rel="noopener noreferrer" class="product-button">
@@ -70,16 +68,26 @@
                   <button type="button" onclick="addProduct()">+ Agregar otro producto</button>
                 </div>
 
+                <label for="nombre">Su nombre: 
+                  <input id="nombre" type="text" name="nombre" placeholder="Jaime" required>
+                </label>
+
+                <label for="apellido">Su apellido: 
+                  <input id="apellido" type="text" name="apellido" placeholder="Rodriguez" required>
+                </label>
+
+                <label for="numero">Numero de contacto:
+                    <input id="numero-contacto" type="text" name="numero-contacto" size="30" placeholder="12345678">
+                </label>
+
+                <label for="email">Correo electrónico: 
+                  <input id="email" type="email" name="email" size="30" placeholder="jrodriguez@gmail.com" required>
+                </label>
+
+                <label for="dirección">Dirección:
+                    <input id="direccion" type="text" name="direccion" size="30" required>
+                </label>
                 
-        
-          
-                <fieldset>
-                  <legend>Método de entrega:</legend>
-                  <label><input type="radio" value="entrega" name="metodo" required> Entrega</label>
-                  <label><input type="radio" value="recogida" name="metodo"> Recogida</label>
-                  <label><input type="radio" value="distribución" name="metodo"> Distribución</label>
-                </fieldset>
-          
                 <button id="submit" type="submit"> Enviar</button>
               </form>
         </main>
