@@ -128,6 +128,7 @@
 
           //send info to google sheet
           const scriptURL = 'https://script.google.com/macros/s/AKfycbyCeUDbiPVkyUWiseQoKBZp0RSBz0XKQ3bQ2yb0m0IhPYFSf84ro6-OzolxMiT0QR4C/exec';
+            
           
           function sendToGoogleSheet(event) {
             event.preventDefault();
@@ -158,7 +159,7 @@
                 products
               }),
               headers: {
-                'Content-Type': 'applications/json'
+                'Content-Type': 'application/json'
               }
             })
             .then(res => {
