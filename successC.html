@@ -107,10 +107,10 @@
               const data = {
                 "nombre": formData.get("nombre"),
                 "apellido": formData.get("apellido"),
-                "codigo": formData.get("codigo");
-                "ciudad-nombre": formData.get("ciudad-nombre");
+                "codigo": formData.get("codigo"),
+                "ciudad-nombre": formData.get("ciudad-nombre"),
                 "direccion": formData.get("direccion"),
-                "numero-contacto": formData.get("numero-contacto");
+                "numero-contacto": formData.get("numero-contacto"),
                 "productos": formData.getAll("productName[]").map((name, i) => {
                   const qty = formData.getAll("productQty[]")[i];
                   return `${name} (${qty})`;
