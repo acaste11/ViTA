@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    
+
+    <body>
+        <header>
+            <h1>¿Con quién tenemos el gusto?</h1>
+        </header>
+        <main>
+            <form id="login" onsubmit="validateUser(event)">
+          
+                <label for="name">Nombre: 
+                  <input id="name" type="text" name="nombre" placeholder="Jaime" required>
+                </label>
+          
+                <label for="apellido">Apellido: 
+                  <input id="apellido" type="text" name="apellido" placeholder="Rodriguez" required>
+                </label>
+          
+                <label for="code">Código de usuario: 
+                  <input id="code" type="text" name="code" placeholder="C1234567" required>
+                </label>
+          
+                <button id="submit" type="submit">Siguiente</button>
+              </form>
+
+              <script>
+                const validUsers = [
+                    { name: "Jaime", apellido: "Rodriguez", code: "C123456"},
+                    { name: "Analia", apellido: "Castellanos", code: "C654321"}
+                ];
+
+                function validateUser(event) {
+                    event.preventDefault();
+                    const name = document.getElementById("name").value.trim();
+                    const apellido = document.getElementById("apellido").value.trim();
+                    const code = document.getElementById("code").value.trim();
+
+                    const match = validUsers.find(user =>
+                        user.name.toLowerCase() === name.toLowerCase() &&
+                        user.apellido.toLowerCase() === apellido.toLowerCase() &&
+                        user.code === code
+                    );
+
+                    if (match) {
+                        localStorage.setItem("authorized", "true");
+                        window.location.href = "successC.html";
+                    }
+                    else {
+                        alert("Información incorrecta");
+                    }
+                }
+              </script>
+        </main>
+    </body>
+</html>
