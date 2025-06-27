@@ -271,22 +271,11 @@
               const form = document.getElementById("survey-form");
               const formData = new FormData(form);
 
+              const maxProducts = 10;
+
               const names = formData.getAll("productName[]");
               const qtys = formData.getAll("productQty[]");
               const prices = formData.getAll("productPrice[]");
-
-              const productos = names.map((name, i) => {
-                  const qty = parseInt(qtys[i]);
-                  const price = parseFloat(prices[i]);
-                  const subtotal = (qty * price).toFixed(2);
-                  return `${name} x${qty} @ ${price} Bs = ${subtotal} Bs`;
-              }).join(", ");
-
-              const total = names.reduce((sum, _, i) => {
-                  const qty = parseInt(qtys[i]);
-                  const price = parseFloat(prices[i]);
-                  return sum + qty * price;
-              }, 0).toFixed(2);
             
               const data = {
                 "empresa-nombre": formData.get("empresa-nombre"),
@@ -296,10 +285,26 @@
                 "numero-contacto": formData.get("numero-contacto"),
                 "email": formData.get("email"),
                 "direccion": formData.get("direccion"),
-                "productos": productos,
-                "total": total
               };
+
+              for(let i = 0; i < maxProducts; i++) {
+                data[`producto_${i+1}`] = names[i] || "";
+                data[`cantidad_${i+1}`] = qtys[i] || "";
+                data[`precio_${i+1}`] = prices[i] || "";
+                if(names[i] && qtys[i] && prices[i]) {
+                  data[`subtotal_${i+1}`] = (parseInt(qtys[i]) * parseFloat(prices[i])).toFixed(2);
+                } else {
+                  data[`subtotal_${i+1}`] = "";
+                }
+              }
+              const total = names.reduce((sum, _, i) => {
+                const qty = parseInt(qtys[i]) || 0;
+                const price = parseFloat(prices[i]) || 0;
+                return sum + qty * price;
+              }, 0).toFixed(2);
             
+              data["total"] = total;
+              
               localStorage.setItem("pedidoResumen", JSON.stringify(data));
 
               fetch("https://sheetdb.io/api/v1/pfy3wcuhrm77u", {
