@@ -240,7 +240,7 @@
 
           function removeProduct(button) {
             const entry = button.closest('.product-entry');
-            entry.remove();
+            if (entry) entry.remove();
           }
 
           document.addEventListener("input", function (e) {
@@ -249,7 +249,7 @@
                   const price = priceList[name] ?? 0;
 
                   const priceField = e.target.closest(".product-entry").querySelector('input[name="productPrice[]"]');
-                  priceField.value = price;
+                  if (priceField) priceField.value = price;
               }
           });
 
