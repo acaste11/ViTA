@@ -18,8 +18,8 @@
                     <input id="empresa-nombre" type="text" name="empresa-nombre" placeholder="ViTA Laboratorios" required>
                 </label>
 
-                <label for="cuidad">Cuidad:
-                    <input id="cuidad-nombre" type="text" name="cuidad-nombre" placeholder="La Paz" required>
+                <label for="ciudad">Ciudad:
+                    <input id="ciudad-nombre" type="text" name="ciudad-nombre" placeholder="La Paz" required>
                 </label>
                 
                 
@@ -127,7 +127,7 @@
           })
 
           //send info to google sheet
-          const scriptURL = 'https://script.google.com/macros/s/AKfycbyE_4rBMiRBP_FgPImOaal-f7Hp8UydhnKQn4Znloias5U0O33JTPm1wr_MCQISohmZ/exec';
+          const scriptURL = 'https://script.google.com/macros/s/AKfycbyKOLayt47TtQB9QPpr7PBJzKxu-jaZHD31FNHuQB8gICGVdISDTVdDlo8RLaXJ28OB/exec';
             
           
           function sendToGoogleSheet(event) {
@@ -136,10 +136,13 @@
             const form = document.getElementById("survey-form");
             const formData = new FormData(form);
 
+            const empresa = formData.get("empresa-nombre");
+            const ciudad = formData.get("ciudad-nombre");
             const nombre = formData.get("nombre");
             const apellido = formData.get("apellido");
+            const numeroContacto = formData.get("numero-contacto");
             const email = formData.get("email");
-            const metodo = formData.get("metodo");
+            const direccion = formData.get("direccion");
 
             const productNames = formData.getAll("productName[]");
             const productQtys = formData.getAll("productQty[]");
@@ -152,10 +155,13 @@
             fetch(scriptURL, {
               method: 'POST',
               body: JSON.stringify({
+                empresa,
+                ciudad,
                 nombre,
                 apellido,
+                numeroContacto,
                 email,
-                metodo,
+                direccion,
                 products
               }),
               headers: {
@@ -168,7 +174,7 @@
               localStorage.removeItem("authorized");
             })
             .catch(err => {
-              alert("error al enviar el pedido. Intente nuevamente.");
+              alert("Error al enviar el pedido. Intente nuevamente.");
               console.error(err);
             });
           }
