@@ -126,7 +126,7 @@
               })
               .then(response => {
                 if (response.ok) {
-                  alert("¡Pedido enviado con éxito!");
+                  window.location.href = "gracias.html";
                   form.reset();
                   localStorage.removeItem("authorized");
                 } else {
