@@ -126,9 +126,8 @@
               })
               .then(response => {
                 if (response.ok) {
+                  localStorage.setItem("pedidoResumen", JSON.stringify(data));
                   window.location.href = "gracias.html";
-                  form.reset();
-                  localStorage.removeItem("authorized");
                 } else {
                   throw new Error("Error al enviar los datos.");
                 }
