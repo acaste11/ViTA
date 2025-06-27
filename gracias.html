@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Gracias por su pedido</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align:center;
+      padding-top: 50px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .summary {
+      margin-top: 20px;
+    }
+    .summary p {
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>¡Gracias por su pedido!</h1>
+  <p>Recibimos su solicitud y la estaremos procesando pronto.</p>
+
+  <h2>Resumen del Pedido:</h2>
+
+  <div class="summary" id="summary"></div>
+
+  <script>
+    const resumen = JSON.parse(localStorage.getItem("pedidoResumen"));
+    if (resumen) {
+      const container = document.getElementById("summary");
+
+      container.innerHTML = '
+        <p><strong>Nombre:</strong> ${resumen.nombre} ${resumen.apellido}</p>
+        <p><strong>Código de usuario:</strong> ${resumen.codigo}</p>
+        <p><strong>Ciudad:</strong> ${resumen["ciudad-nombre"]}</p>
+        <p><strong>Dirección:</strong> ${resumen.direccion}</p>
+        <p><strong>Contacto:</strong> ${resumen["numero-contacto"]}</p>
+        <p><strong>Productos:</strong> ${resumen.productos}</p>
+      `;
+
+      //limpiar despues
+      localStorage.removeItem("pedidoResumen");
+      }
+      else 
+      {
+        document.getElementById("summary").innerHTML = "<p>No hay resumen disponible.</p>";
+      }
+  </script>
+  
+  <a href="index.html">Volver a la pagina principal</a>
+</body>
+</html>
