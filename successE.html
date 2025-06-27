@@ -130,54 +130,49 @@
           const scriptURL = 'https://script.google.com/macros/s/AKfycbw1uKyDYFpor7SH_AAjX1gmvuZJ_BhfzBKhjMl5097xtNP_Hz6h-ym90z_JlELgDUWM/exec';
             
           
-          function sendToGoogleSheet(event) {
-            event.preventDefault();
+          function sendToGoogleSheet(event) 
+          {
+              event.preventDefault();
+            
+              const form = document.getElementById("survey-form");
+              const formData = new FormData(form);
+            
+              const data = {
+                "empresa-nombre": formData.get("empresa-nombre"),
+                "cuidad-nombre": formData.get("cuidad-nombre"),
+                "nombre": formData.get("nombre"),
+                "apellido": formData.get("apellido"),
+                "numero-contacto": formData.get("numero-contacto"),
+                "email": formData.get("email"),
+                "direccion": formData.get("direccion"),
+                "productos": formData.getAll("productName[]").map((name, i) => {
+                  const qty = formData.getAll("productQty[]")[i];
+                  return `${name} (${qty})`;
+                }).join(", ")
+              };
+            
+              fetch("https://sheetdb.io/api/v1/pfy3wcuhrm77u", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ data })  // <- important!
+              })
+              .then(response => {
+                if (response.ok) {
+                  alert("¡Pedido enviado con éxito!");
+                  form.reset();
+                  localStorage.removeItem("authorized");
+                } else {
+                  throw new Error("Error al enviar los datos.");
+                }
+              })
+              .catch(error => {
+                alert("Error al enviar el pedido. Intente nuevamente.");
+                console.error(error);
+              });
+            }
 
-            const form = document.getElementById("survey-form");
-            const formData = new FormData(form);
-
-            const empresa = formData.get("empresa-nombre");
-            const ciudad = formData.get("ciudad-nombre");
-            const nombre = formData.get("nombre");
-            const apellido = formData.get("apellido");
-            const numeroContacto = formData.get("numero-contacto");
-            const email = formData.get("email");
-            const direccion = formData.get("direccion");
-
-            const productNames = formData.getAll("productName[]");
-            const productQtys = formData.getAll("productQty[]");
-
-            const products = productNames.map((nombre, i) => ({
-              nombre,
-              cantidad: productQtys[i]
-            }));
-
-            fetch(scriptURL, {
-              method: 'POST',
-              body: JSON.stringify({
-                empresa,
-                ciudad,
-                nombre,
-                apellido,
-                numeroContacto,
-                email,
-                direccion,
-                products
-              }),
-              headers: {
-                'Content-Type': 'application/json'
-              }
-            })
-            .then(res => {
-              alert("¡Pedido enviado con éxito!");
-              form.reset();
-              localStorage.removeItem("authorized");
-            })
-            .catch(err => {
-              alert("Error al enviar el pedido. Intente nuevamente.");
-              console.error(err);
-            });
-          }
         </script>
     </body>
 </html>
