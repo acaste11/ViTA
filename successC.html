@@ -246,9 +246,9 @@
               const sharedData = {
                 "nombre": formData.get("nombre"),
                 "apellido": formData.get("apellido"),
-                "ciudad": formData.get("ciudad-nombre"),
+                "ciudad": formData.get("ciudad"),
                 "direccion": formData.get("direccion"),
-                "numero": formData.get("numero"),
+                "numero": formData.get("numero-contacto"),
               };
 
               const submissionPromises = names.map((name, i) => {
@@ -262,7 +262,7 @@
                       "subtotal": (parseInt(qtys[i]) * parseFloat(prices[i])).toFixed(2)
                   };
 
-                  return fetch("https://sheetdb.io/api/v1/pfy3wcuhrm77u", {
+                  return fetch("https://sheetdb.io/api/v1/43vnkdlnkhl3o", {
                       method: "POST", 
                       headers: {
                           "Content-Type": "application/json"
