@@ -106,7 +106,8 @@
                     </label>
 
                     <label>Precio (por unidad):
-                        <input type="number" name="productPrice[]" readonly>
+                        <span class="price-display">0</span> Bs
+                        <input type="hidden" name="productPrice[]">
                     </label>
                     <button type="button" onclick="removeProduct(this)">x Quitar este producto</button>
                   </div>
@@ -184,53 +185,15 @@
             //add inputs
             productDiv.innerHTML = `
               <label>Producto:
-                <input type="text" name="productName[]" class="product-input" list="productos" required>
-                <datalist id="productos">
-                    <option value = "ACONDICIONADOR AVENA C.L. X 350 mL">
-                    <option value = "ACONDICIONADOR AVENA C.L. X 700 mL">
-                    <option value = "ACONDICIONADOR FRUTILLA C.L. X 350 mL">
-                    <option value = "ACONDICIONADOR FRUTILLA C.L. X 700 mL">
-                    <option value = "ACONDICIONADOR HUEVO C.L. X 350 mL">
-                    <option value = "ACONDICIONADOR HUEVO C.L. X 700 mL">
-                    <option value = "AQUA SENSITIVE X 55 G">
-                    <option value = "GEL AVENA C.L. X 350 mL">
-                    <option value = "GEL FRUTILLA C.L. X 350 mL">
-                    <option value = "LECHE DE ALMENDRAS C.L. X 300 ML">
-                    <option value = "LECHE DE AVENA C.L. X 300 ML">
-                    <option value = "LECHE DE PEPINOS C.L. X 300 mL">
-                    <option value = "LECHE DE ROSAS C.L. Fco. X 300 mL">
-                    <option value = "LECHE DE KARITÉ C.L. X 300 ML">
-                    <option value = "LOCION RESTAURADORA DE CABELLO C.L. X340ml">
-                    <option value = "PERLA VITAROSA Crema Limpia Pecas Tubo X 20 g">
-                    <option value = "PLACENTEX CARLA LORENA 15mL X 9 AMP">
-                    <option value = "PLACENTEX CARLA LORENA 15mL X 3 AMP">
-                    <option value = "SHAMPOO ANTICASPA C.L. X 350 mL">
-                    <option value = "SHAMPOO AVENA C.L. 350 mL">
-                    <option value = "SHAMPOO AVENA C.L. 700 mL">
-                    <option value = "SHAMPOO BEBE C.L. X 350 mL">
-                    <option value = "SHAMPOO BEBE C.L. X 700 mL">
-                    <option value = "SHAMPOO FRUTILLA C.L. X 350 mL">
-                    <option value = "SHAMPOO FRUTILLA C.L. X 700 mL">
-                    <option value = "SHAMPOO HUEVO C.L. X 350 mL">
-                    <option value = "SHAMPOO HUEVO C.L. X 700 mL">
-                    <option value = "SOL VITAROSA FACIAL CON COLOR SPF 50+ TUBO X 50 ML">
-                    <option value = "SOL VITAROSA NIÑOS SPF 50+ TUBO X 150 ML">
-                    <option value = "VITALIMON CREMA BLANQUEADORA X 24 G">
-                    <option value = "VITAROSA SERUM NIACINAMIDA X 30 ML">
-                    <option value = "VITAROSA SERUM VITAMINA C X 30 ML">
-                    <option value = "VITAROSA NF NIACINAMIDA CREMA LIMPIA PECAS X 27G">
-                    <option value = "CERA LIQUIDA LORITO X 1000 mL">
-                    <option value = "CERA LIQUIDA PINO LORITO X 1000 mL">
-                    <option value = "PURIFICADOR DE AMBIENTE x 90 g">
-                    <option value = "CERA LIQUIDA MARSELLA X 1000 mL">
-                </datalist>
+                  <input type="text" name="productName[]" class="product-input" list="productos" required>
               </label>
               <label>Cantidad:
-                <input type="number" name="productQty[]" min="1" required>
+                  <input type="number" name="productQty[]" min="1" required>
               </label>
               <label>Precio (por unidad):
-                  <input type="number" name="productPrice[]" readonly>
-                </label>
+                  <span class="price-display">0</span> Bs
+                  <input type="hidden" name="productPrice[]">
+              </label>
               <button type="button" onclick="removeProduct(this)">x Quitar este producto</button>
             `;
 
@@ -247,8 +210,14 @@
                   const name = e.target.value;
                   const price = priceList[name] ?? 0;
 
-                  const priceField = e.target.closest(".product-entry").querySelector('input[name="productPrice[]"]');
-                  if (priceField) priceField.value = price;
+                  const entry = e.target.closest(".product-entry");
+                  const priceField = entry.querySelector('input[name="productPrice[]"]');
+                  const priceDisplay = entry.querySelector('.price-display');
+
+                  if (priceField && priceDisplay) {
+                      priceField.value = price;
+                      priceDisplay.textContent = price;
+                  }
               }
           });
 
@@ -329,7 +298,7 @@
 
                   console.log("All OK?", allOK);
                   if(allOK) {
-                      window.location.href = "gracias.html";
+                      window.location.href = "graciasCliente.html";
                   } else {
                       throw new Error("Uno o más productos no se guardaron correctamente.");
                   }
