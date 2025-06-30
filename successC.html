@@ -276,10 +276,14 @@
           document.addEventListener("input", function (e) {
               if (e.target.classList.contains("product-input")){
                   const name = e.target.value;
-                  const price = priceList[name] ?? 0;
+                  const price = priceList[name] ?? '';
 
                   const priceField = e.target.closest(".product-entry").querySelector('input[name="productPrice[]"]');
                   if (priceField) priceField.value = price;
+                  updateTotal();
+              }
+              if (e.target.name === "productQty[]") {
+                  updateTotal();
               }
           });
 
