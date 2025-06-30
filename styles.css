@@ -7,14 +7,9 @@
 
 body {
   line-height: 1.6;
-  background-color: #f9f9f9;
+  background-color: #f5bf93;
   color: #333;
   padding: 20px;
-}
-
-body {
-  background-color: #f9f9f9;
-  color: #333;
 }
 
 /* Header */
@@ -24,6 +19,7 @@ header {
   gap: 20px;
   padding: 20px;
   justify-content: center;
+  background-color: #f5bf93;
 }
 
 header img {
@@ -39,7 +35,7 @@ header img {
 #description {
   text-align: center;
   margin: 10px 0 20px;
-  font-size: 1.2em;
+  font-size: 1.4em;
 }
 
 /* Navigation */
@@ -111,10 +107,11 @@ nav a.content.active{
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  background-color: #f5bf93;
 }
 
 .home-content img {
-  max-width: 300px;
+  max-width: 500px;
   border-radius: 12px;
 }
 
