@@ -14,14 +14,14 @@
 
         <main>
             <form id="survey-form" onsubmit="sendToGoogleSheet(event)">
-                <label for="empresa">Nombre de empresa:
-                    <input id="empresa-nombre" type="text" name="empresa-nombre" placeholder="ViTA Laboratorios" required>
+                
+                <label for="nombre">Su nombre: 
+                  <input id="nombre" type="text" name="nombre" placeholder="Jaime" required>
                 </label>
 
-                <label for="ciudad">Ciudad:
-                    <input id="ciudad-nombre" type="text" name="ciudad-nombre" placeholder="La Paz" required>
+                <label for="apellido">Su apellido: 
+                  <input id="apellido" type="text" name="apellido" placeholder="Rodriguez" required>
                 </label>
-                
                 
                 <div id="product-section">
                   <h3>Productos</h3>
@@ -111,20 +111,14 @@
                   <button type="button" onclick="addProduct()">+ Agregar otro producto</button>
                 </div>
 
-                <label for="nombre">Su nombre: 
-                  <input id="nombre" type="text" name="nombre" placeholder="Jaime" required>
-                </label>
-
-                <label for="apellido">Su apellido: 
-                  <input id="apellido" type="text" name="apellido" placeholder="Rodriguez" required>
-                </label>
+            
 
                 <label for="numero">Numero de contacto:
                     <input id="numero-contacto" type="text" name="numero-contacto" size="30" placeholder="12345678">
                 </label>
 
-                <label for="email">Correo electrónico: 
-                  <input id="email" type="email" name="email" size="30" placeholder="jrodriguez@gmail.com" required>
+                <label for="ciudad">Ciudad:
+                    <input id="numero-contacto" type="text" name="ciudad" size="30" placeholder="La Paz" required>
                 </label>
 
                 <label for="dirección">Dirección:
@@ -278,12 +272,10 @@
               const prices = formData.getAll("productPrice[]");
             
               const sharedData = {
-                "empresa-nombre": formData.get("empresa-nombre"),
-                "ciudad-nombre": formData.get("ciudad-nombre"),
                 "nombre": formData.get("nombre"),
                 "apellido": formData.get("apellido"),
                 "numero-contacto": formData.get("numero-contacto"),
-                "email": formData.get("email"),
+                "ciudad-nombre": formData.get("ciudad-nombre"),
                 "direccion": formData.get("direccion"),
               };
 
@@ -298,7 +290,7 @@
                       "subtotal": (parseInt(qtys[i]) * parseFloat(prices[i])).toFixed(2)
                   };
 
-                  return fetch("https://sheetdb.io/api/v1/pfy3wcuhrm77u", {
+                  return fetch("https://sheetdb.io/api/v1/43vnkdlnkhl3o", {
                       method: "POST", 
                       headers: {
                           "Content-Type": "application/json"
