@@ -227,8 +227,92 @@
             if (localStorage.getItem("authorized") !== "true") {
                 window.location.href = "graciasCliente.html";
             }
-            
 
+
+            
+            function sendToGoogleSheet(event) 
+            {
+              event.preventDefault();
+            
+              const form = document.getElementById("survey-form");
+              const formData = new FormData(form);
+
+              const maxProducts = 10;
+
+              const names = formData.getAll("productName[]");
+              const qtys = formData.getAll("productQty[]");
+              const prices = formData.getAll("productPrice[]");
+            
+              const sharedData = {
+                "nombre": formData.get("nombre"),
+                "apellido": formData.get("apellido"),
+                "ciudad": formData.get("ciudad-nombre"),
+                "direccion": formData.get("direccion"),
+                "numero": formData.get("numero"),
+              };
+
+              const submissionPromises = names.map((name, i) => {
+                  if (!name || !qtys[i] || !prices[i]) return null;
+
+                  const row = {
+                      ...sharedData,
+                      "producto": name,
+                      "cantidad": qtys[i],
+                      "precio": prices[i],
+                      "subtotal": (parseInt(qtys[i]) * parseFloat(prices[i])).toFixed(2)
+                  };
+
+                  return fetch("https://sheetdb.io/api/v1/pfy3wcuhrm77u", {
+                      method: "POST", 
+                      headers: {
+                          "Content-Type": "application/json"
+                      },
+                      body: JSON.stringify({ data: row })
+                  });
+              });
+
+              //order summary
+              const resumen = {
+                  ...sharedData,
+                  productos: [],
+                  total: 0
+              };
+
+              names.forEach((name, i) => {
+                  const qty = parseInt(qtys[i]) || 0;
+                  const price = parseFloat(prices[i]) || 0;
+                  const subtotal = (qty * price).toFixed(2);
+                  if (name && qty && price) {
+                      resumen.productos.push({
+                          nombre: name,
+                          cantidad: qty,
+                          precio: price.toFixed(2),
+                          subtotal
+                      });
+                      resumen.total += qty * price;
+                  }
+              });
+              resumen.total = resumen.total.toFixed(2);
+              localStorage.setItem("pedidoResumen", JSON.stringify(resumen));
+
+              console.log("Resumen:", resumen);
+              
+              Promise.all(submissionPromises.filter(Boolean))
+                  .then(responses => {
+                  console.log("Responses:", responses);
+                  const allOK = responses.every(r => r.ok);
+
+                  console.log("All OK?", allOK);
+                  if(allOK) {
+                      window.location.href = "graciasCliente.html";
+                  } else {
+                      throw new Error("Uno o más productos no se guardaron correctamente.");
+                  }
+              })
+              .catch(error => {
+                  alert("Error al enviar el pedido. Intente nuevamente.");
+                  console.error("Fetch error:", error);
+              });
         </script>
     </body>
 </html>
