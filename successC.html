@@ -111,7 +111,7 @@
                   <button type="button" onclick="addProduct()">+ Agregar otro producto</button>
                 </div>
 
-            
+                <h3>Total: Bs <span id="totalDisplay">0.00</span></h3>            
 
                 <label for="numero">Numero de contacto:
                     <input id="numero-contacto" type="text" name="numero-contacto" size="30" placeholder="12345678">
@@ -169,6 +169,38 @@
                 "PURIFICADOR DE AMBIENTE x 90 g": 21.59,
                 "CERA LIQUIDA MARSELLA X 1000 mL": 29.98
           };
+
+          function updateTotal() {
+              const productEntries = document.querySelectorAll('.product-entry');
+              let total = 0;
+
+              productEntries.forEach(entry => {
+                  const qtyInput = entry.querySelector('input[name="productQty[]"]');
+                  const priceInput = entry.querySelector('input[name="productPrice[]");
+
+                  const qty = parseInt(qtyInput?.value) || 0;
+                  const price = parseFloat(priceInput?.value) || 0;
+
+                  total += qty * price;
+              });
+              document.getElementById('totalDisplay').textContent = total.toFixed(2);
+          }
+
+          document.addEventListener('input', (e) => {
+              if (
+                  e.target.matches('input[name="productQty[]"]') ||
+                  e.target.matches('input[name="productName[]"]')
+                  ){
+                  const name = e.target.closest('.product-entry')?,querySelector('.product-input')?.value;
+                  const priceField = e.target.closest('.product-entry')?.querySelector('input[name="productPrice[]"]');
+                  if (priceField && priceList[name]) {
+                    priceField.value = priceList[name];
+                  }
+                  updateTotal();
+              }
+          });
+
+            
           function addProduct() {
             const container = document.getElementById('product-section');
 
@@ -230,11 +262,13 @@
             `;
 
             container.insertBefore(productDiv, container.lastElementChild);
+            updateTotal();
           }
 
           function removeProduct(button) {
             const entry = button.closest('.product-entry');
             if (entry) entry.remove();
+            updateTotal();
           }
 
           document.addEventListener("input", function (e) {
@@ -246,6 +280,8 @@
                   if (priceField) priceField.value = price;
               }
           });
+
+          
 
           if (localStorage.getItem("authorized") !== "true") {
             window.location.href = "cliente.html";
