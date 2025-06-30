@@ -129,8 +129,24 @@
               </form>
         </main>
         <script>
-            
-          const priceList = {
+
+          function updateTotal() {
+              const productEntries = document.querySelectorAll('.product-entry');
+              let total = 0;
+
+              productEntries.forEach(entry => {
+                  const qtyInput = entry.querySelector('input[name="productQty[]"]');
+                  const priceInput = entry.querySelector('input[name="productPrice[]"]');
+
+                  const qty = parseInt(qtyInput?.value) || 0;
+                  const price = parseFloat(priceInput?.value) || 0;
+
+                  total += qty * price;
+              });
+              document.getElementById('totalDisplay').textContent = total.toFixed(2);
+          }
+
+           const priceList = {
                 "ACONDICIONADOR AVENA C.L. X 350 mL": 27.7,
                 "ACONDICIONADOR AVENA C.L. X 700 mL": 38.26,
                 "ACONDICIONADOR FRUTILLA C.L. X 350 mL": 27.7,
@@ -170,34 +186,21 @@
                 "CERA LIQUIDA MARSELLA X 1000 mL": 29.98
           };
 
-          function updateTotal() {
-              const productEntries = document.querySelectorAll('.product-entry');
-              let total = 0;
-
-              productEntries.forEach(entry => {
-                  const qtyInput = entry.querySelector('input[name="productQty[]"]');
-                  const priceInput = entry.querySelector('input[name="productPrice[]");
-
-                  const qty = parseInt(qtyInput?.value) || 0;
-                  const price = parseFloat(priceInput?.value) || 0;
-
-                  total += qty * price;
-              });
-              document.getElementById('totalDisplay').textContent = total.toFixed(2);
-          }
-
           document.addEventListener('input', (e) => {
               if (
-                  e.target.matches('input[name="productQty[]"]') ||
-                  e.target.matches('input[name="productName[]"]')
-                  ){
-                  const name = e.target.closest('.product-entry')?,querySelector('.product-input')?.value;
-                  const priceField = e.target.closest('.product-entry')?.querySelector('input[name="productPrice[]"]');
-                  if (priceField && priceList[name]) {
-                    priceField.value = priceList[name];
-                  }
-                  updateTotal();
-              }
+                    e.target.matches('input[name="productQty[]"]') ||
+                    e.target.matches('input[name="productName[]"]')
+                ) {
+                    const entry = e.target.closest('.product-entry');
+                    const name = entry?.querySelector('input[name="productName[]"]')?.value; 
+                    const priceField = entry?.querySelector('input[name="productPrice[]"]');
+            
+                    if (priceField && priceList[name]) {
+                        priceField.value = priceList[name];
+                    }
+            
+                    updateTotal();
+                }
           });
 
             
