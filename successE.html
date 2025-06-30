@@ -330,10 +330,15 @@
               });
               resumen.total = resumen.total.toFixed(2);
               localStorage.setItem("pedidoResumen", JSON.stringify(resumen));
+
+              console.log("Resumen:", resumen);
               
               Promise.all(submissionPromises.filter(Boolean))
                   .then(responses => {
+                  console.log("Responses:", responses);
                   const allOK = responses.every(r => r.ok);
+
+                  console.log("All OK?", allOK);
                   if(allOK) {
                       window.location.href = "gracias.html";
                   } else {
@@ -342,7 +347,7 @@
               })
               .catch(error => {
                   alert("Error al enviar el pedido. Intente nuevamente.");
-                  console.error(error);
+                  console.error("Fetch error:", error);
               });
 
               /*for(let i = 0; i < maxProducts; i++) {
