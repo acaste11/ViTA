@@ -312,8 +312,8 @@
               const sharedData = {
                 "nombre": formData.get("nombre"),
                 "apellido": formData.get("apellido"),
-                "numero-contacto": formData.get("numero-contacto"),
-                "ciudad-nombre": formData.get("ciudad"),
+                "ciudad": formData.get("ciudad"),
+                "numero": formData.get("numero-contacto"),
                 "direccion": formData.get("direccion"),
               };
 
@@ -379,47 +379,6 @@
                   alert("Error al enviar el pedido. Intente nuevamente.");
                   console.error("Fetch error:", error);
               });
-
-              /*for(let i = 0; i < maxProducts; i++) {
-                data[`producto_${i+1}`] = names[i] || "";
-                data[`cantidad_${i+1}`] = qtys[i] || "";
-                data[`precio_${i+1}`] = prices[i] || "";
-                if(names[i] && qtys[i] && prices[i]) {
-                  data[`subtotal_${i+1}`] = (parseInt(qtys[i]) * parseFloat(prices[i])).toFixed(2);
-                } else {
-                  data[`subtotal_${i+1}`] = "";
-                }
-              }
-              const total = names.reduce((sum, _, i) => {
-                const qty = parseInt(qtys[i]) || 0;
-                const price = parseFloat(prices[i]) || 0;
-                return sum + qty * price;
-              }, 0).toFixed(2);
-            
-              data["total"] = total;
-              
-              localStorage.setItem("pedidoResumen", JSON.stringify(data));
-              //console.log("Sending to sheetdb:", data);
-
-              fetch("https://sheetdb.io/api/v1/pfy3wcuhrm77u", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ data: row })  // key 'data'
-              })
-              .then(response => {
-                if (response.ok) {
-                  window.location.href="gracias.html";
-                } else {
-                  throw new Error("Error al enviar los datos.");
-                }
-              })
-              .catch(error => {
-                alert("Error al enviar el pedido. Intente nuevamente.");
-                console.error(error);
-              });*/
-            }
 
         </script>
     </body>
