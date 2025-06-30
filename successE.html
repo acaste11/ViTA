@@ -307,6 +307,30 @@
                   });
               });
 
+              //order summary
+              const resumen = {
+                  ...sharedData,
+                  productos: [],
+                  total: 0
+              };
+
+              names.forEach((name, i) => {
+                  const qty = parseInt(qtys[i]) || 0;
+                  const price = parseFloat(prices[i]) || 0;
+                  const subtotal = (qty * price).toFixed(2);
+                  if (name && qty && price) {
+                      resumen.productos.push({
+                          nombre: name,
+                          cantidad: qty,
+                          precio: price.toFixed(2),
+                          total
+                      });
+                      resumen.total += qty * price;
+                  }
+              });
+              resumen.total = resumen.total.toFixed(2);
+              localStorage.setItem("pedidoResumen", JSON.stringify(resumen));
+              
               Promise.all(submissionPromises.filter(Boolean)).then(responses => {
                   const allOK = responses.every(r => r.ok);
                   if(allOK) {
