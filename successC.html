@@ -187,21 +187,20 @@
           };
 
           document.addEventListener('input', (e) => {
-              if (
-                    e.target.matches('input[name="productQty[]"]') ||
-                    e.target.matches('input[name="productName[]"]')
-                ) {
-                    const entry = e.target.closest('.product-entry');
-                    const name = entry?.querySelector('input[name="productName[]"]')?.value; 
-                    const priceField = entry?.querySelector('input[name="productPrice[]"]');
-            
-                    if (priceField && priceList[name]) {
-                        priceField.value = priceList[name];
-                    }
-            
-                    updateTotal();
+              if (e.target.matches('input.product-input')) 
+              {
+                const name = e.target.value;
+                const priceField = e.target.closest('.product-entry').querySelector('input[name="productPrice[]"]');
+                if (priceField) {
+                  priceField.value = priceList[name] ?? '';
                 }
-          });
+                updateTotal(); 
+              }
+            
+              if (e.target.matches('input[name="productQty[]"]')) {
+                updateTotal();
+              }
+            });
 
             
           function addProduct() {
