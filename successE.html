@@ -295,7 +295,7 @@
                       "producto": name,
                       "cantidad": qtys[i],
                       "precio": prices[i],
-                      "total": (parseInt(qtys[i]) * parseFloat(prices[i])).toFixed(2)
+                      "subtotal": (parseInt(qtys[i]) * parseFloat(prices[i])).toFixed(2)
                   };
 
                   return fetch("https://sheetdb.io/api/v1/pfy3wcuhrm77u", {
@@ -323,7 +323,7 @@
                           nombre: name,
                           cantidad: qty,
                           precio: price.toFixed(2),
-                          total
+                          subtotal
                       });
                       resumen.total += qty * price;
                   }
