@@ -331,7 +331,8 @@
               resumen.total = resumen.total.toFixed(2);
               localStorage.setItem("pedidoResumen", JSON.stringify(resumen));
               
-              Promise.all(submissionPromises.filter(Boolean)).then(responses => {
+              Promise.all(submissionPromises.filter(Boolean))
+                  .then(responses => {
                   const allOK = responses.every(r => r.ok);
                   if(allOK) {
                       window.location.href = "gracias.html";
