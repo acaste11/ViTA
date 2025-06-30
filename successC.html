@@ -186,6 +186,19 @@
                 "CERA LIQUIDA MARSELLA X 1000 mL": 29.98
           };
 
+          document.addEventListener("input", function(e) {
+              if (e.target.classList.contains("product-input")) {
+                  const name = e.target.value;
+                  const price = priceList[name] ?? 0;
+
+                  const priceField = e.target.closest(".product-entry").querySelector('input[name="productPrice[]"]');
+                  if (priceField) priceField.value = price;
+              }
+              if (e.target.classList.contains("product-input") || e.target.name === "productQty[]"){
+                  updateTotal();
+              }
+          });
+            
           document.addEventListener('input', (e) => {
               if (e.target.matches('input.product-input')) 
               {
