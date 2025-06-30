@@ -33,23 +33,45 @@
   <script>
     const resumen = JSON.parse(localStorage.getItem("pedidoResumen"));
     if (resumen) {
-      const container = document.getElementById("summary");
+      let html = `
+      <h2>Resumen del Pedido</h2>
+      <p><strong>Empresa:</strong> ${resumen["empresa-nombre"]}</p>
+      <p><strong>Ciudad:</strong> ${resumen["ciudad-nombre"]}</p>
+      <p><strong>Nombre:</strong> ${resumen["nombre"]} ${resumen["apellido"]}</p>
+      <p><strong>Contacto:</strong> ${resumen["numero-contacto"]}</p>
+      <p><strong>Email:</strong> ${resumen["email"]}</p>
+      <p><strong>Dirección:</strong> ${resumen["direccion"]}</p>
+      <h3>Productos</h3>
+      <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+          <th>Producto</th><th>Cantidad</th><th>Precio Unitario</th><th>Subtotal</th>
+        </tr>`;
 
-      container.innerHTML = '
-        <p><strong>Nombre:</strong> ${resumen.nombre} ${resumen.apellido}</p>
-        <p><strong>Código de usuario:</strong> ${resumen.codigo}</p>
-        <p><strong>Ciudad:</strong> ${resumen["ciudad-nombre"]}</p>
-        <p><strong>Dirección:</strong> ${resumen.direccion}</p>
-        <p><strong>Contacto:</strong> ${resumen["numero-contacto"]}</p>
-        <p><strong>Productos:</strong> ${resumen.productos}</p>
-      `;
+      resumen.productos.forEach(p => {
+      html += `
+        <tr>
+          <td>${p.nombre}</td>
+          <td>${p.cantidad}</td>
+          <td>${p.precio}</td>
+          <td>${p.subtotal}</td>
+        </tr>`;
+      });
 
+      html += `
+        <tr>
+          <td colspan="3"><strong>Total</strong></td>
+          <td><strong>${resumen.total}</strong></td>
+        </tr>
+      </table>`;
+
+      document.body.innerHTML = html;
+      
       //limpiar despues
       localStorage.removeItem("pedidoResumen");
       }
       else 
       {
-        document.getElementById("summary").innerHTML = "<p>No hay resumen disponible.</p>";
+        document.body.innerHTML = "<p>No hay resumen disponible.</p>";
       }
   </script>
   
