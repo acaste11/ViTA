@@ -7,7 +7,7 @@
 
 body {
   line-height: 1.6;
-  background-color: #f5bf93;
+  background-color: #fcffff;
   color: #333;
   padding: 20px;
 }
@@ -19,7 +19,7 @@ header {
   gap: 20px;
   padding: 20px;
   justify-content: center;
-  background-color: #f5bf93;
+  background-color: #fcffff;
 }
 
 header img {
