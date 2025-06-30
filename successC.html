@@ -14,23 +14,21 @@
 
         <main>
             <form id="survey-form" onsubmit="sendToGoogleSheet(event)">
-                <label for="nombre">Nombre: 
-                  <input id="nombre" type="text" name="nombre" placeholder="Jaime" required>
+                <label for="empresa">Nombre de empresa:
+                    <input id="empresa-nombre" type="text" name="empresa-nombre" placeholder="ViTA Laboratorios" required>
                 </label>
 
-                <label for="apellido">Apellido: 
-                  <input id="apellido" type="text" name="apellido" placeholder="Rodriguez" required>
+                <label for="ciudad">Ciudad:
+                    <input id="ciudad-nombre" type="text" name="ciudad-nombre" placeholder="La Paz" required>
                 </label>
-
-                <label for="codigo">Código de usuario: 
-                    <input id="codigo" type="text" name="codigo" placeholder="C1234567" required>
-                  </label>
+                
                 
                 <div id="product-section">
                   <h3>Productos</h3>
 
                   <h4>Conozca nuestros productos:</h4>
-                   <div class="product-grid">
+
+                  <div class="product-grid">
                       <a href="https://vita.com.bo/categoria-producto/vita-belleza/" target="_blank" rel="noopener noreferrer" class="product-button">
                         <img src="shampoo.png" alt="Belleza">
                         <span>Belleza</span>
@@ -100,81 +98,83 @@
                         </datalist>
                     </label>
 
-
                     <label>Cantidad:
                       <input type="number" name="productQty[]" min="1" required>
                     </label>
 
                     <label>Precio (por unidad):
-                        <span class="price-display">0</span> Bs
-                        <input type="hidden" name="productPrice[]">
+                        <input type="number" name="productPrice[]" readonly>
                     </label>
                     <button type="button" onclick="removeProduct(this)">x Quitar este producto</button>
                   </div>
 
                   <button type="button" onclick="addProduct()">+ Agregar otro producto</button>
                 </div>
-                
-                <label for="ciudad">Cuidad:
-                    <input id="ciudad-nombre" type="text" name="ciudad-nombre" placeholder="La Paz" required>
+
+                <label for="nombre">Su nombre: 
+                  <input id="nombre" type="text" name="nombre" placeholder="Jaime" required>
+                </label>
+
+                <label for="apellido">Su apellido: 
+                  <input id="apellido" type="text" name="apellido" placeholder="Rodriguez" required>
+                </label>
+
+                <label for="numero">Numero de contacto:
+                    <input id="numero-contacto" type="text" name="numero-contacto" size="30" placeholder="12345678">
+                </label>
+
+                <label for="email">Correo electrónico: 
+                  <input id="email" type="email" name="email" size="30" placeholder="jrodriguez@gmail.com" required>
                 </label>
 
                 <label for="dirección">Dirección:
                     <input id="direccion" type="text" name="direccion" size="30" required>
                 </label>
                 
-                <label for="numero">Numero de contacto:
-                    <input id="numero-contacto" type="text" name="numero-contacto" size="30" placeholder="12345678">
-                </label>
-          
                 <button id="submit" type="submit"> Enviar</button>
               </form>
         </main>
-
-        
         <script>
-
+            
           const priceList = {
-              "ACONDICIONADOR AVENA C.L. X 350 mL": 32,
-                "ACONDICIONADOR AVENA C.L. X 700 mL": 42,
-                "ACONDICIONADOR FRUTILLA C.L. X 350 mL": 32,
-                "ACONDICIONADOR FRUTILLA C.L. X 700 mL": 42,
-                "ACONDICIONADOR HUEVO C.L. X 350 mL": 32,
-                "ACONDICIONADOR HUEVO C.L. X 700 mL": 42,
-                "AQUA SENSITIVE X 55 G": 49,
-                "GEL AVENA C.L. X 350 mL": 41,
-                "GEL FRUTILLA C.L. X 350 mL": 41,
-                "LECHE DE ALMENDRAS C.L. X 300 ML": 56,
-                "LECHE DE AVENA C.L. X 300 ML": 56,
-                "LECHE DE PEPINOS C.L. X 300 mL": 56,
-                "LECHE DE ROSAS C.L. Fco. X 300 mL": 56,
-                "LECHE DE KARITÉ C.L. X 300 ML": 56,
-                "LOCION RESTAURADORA DE CABELLO C.L. X340ml": 54,
-                "PERLA VITAROSA Crema Limpia Pecas Tubo X 20 g": 99,
-                "PLACENTEX CARLA LORENA 15mL X 9 AMP": 159,
-                "PLACENTEX CARLA LORENA 15mL X 3 AMP": 56,
-                "SHAMPOO ANTICASPA C.L. X 350 mL": 52,
-                "SHAMPOO AVENA C.L. 350 mL": 32,
-                "SHAMPOO AVENA C.L. 700 mL": 42,
-                "SHAMPOO BEBE C.L. X 350 mL": 34,
-                "SHAMPOO BEBE C.L. X 700 mL": 45,
-                "SHAMPOO FRUTILLA C.L. X 350 mL": 32,
-                "SHAMPOO FRUTILLA C.L. X 700 mL": 42,
-                "SHAMPOO HUEVO C.L. X 350 mL": 32,
-                "SHAMPOO HUEVO C.L. X 700 mL": 42,
-                "SOL VITAROSA FACIAL CON COLOR SPF 50+ TUBO X 50 ML": 109,
-                "SOL VITAROSA NIÑOS SPF 50+ TUBO X 150 ML": 118,
-                "VITALIMON CREMA BLANQUEADORA X 24 G": 47,
-                "VITAROSA SERUM NIACINAMIDA X 30 ML": 145,
-                "VITAROSA SERUM VITAMINA C X 30 ML": 190,
-                "VITAROSA NF NIACINAMIDA CREMA LIMPIA PECAS X 27G": 62,
-                "CERA LIQUIDA LORITO X 1000 mL": 44,
-                "CERA LIQUIDA PINO LORITO X 1000 mL": 43,
-                "PURIFICADOR DE AMBIENTE x 90 g": 24,
-                "CERA LIQUIDA MARSELLA X 1000 mL": 33
+                "ACONDICIONADOR AVENA C.L. X 350 mL": 27.7,
+                "ACONDICIONADOR AVENA C.L. X 700 mL": 38.26,
+                "ACONDICIONADOR FRUTILLA C.L. X 350 mL": 27.7,
+                "ACONDICIONADOR FRUTILLA C.L. X 700 mL": 38.26,
+                "ACONDICIONADOR HUEVO C.L. X 350 mL": 27.7,
+                "ACONDICIONADOR HUEVO C.L. X 700 mL": 38.26,
+                "AQUA SENSITIVE X 55 G": 47.68,
+                "GEL AVENA C.L. X 350 mL": 35.14,
+                "GEL FRUTILLA C.L. X 350 mL": 35.14,
+                "LECHE DE ALMENDRAS C.L. X 300 ML": 51.69,
+                "LECHE DE AVENA C.L. X 300 ML": 51.69,
+                "LECHE DE PEPINOS C.L. X 300 mL": 51.69,
+                "LECHE DE ROSAS C.L. Fco. X 300 mL": 51.69,
+                "LECHE DE KARITÉ C.L. X 300 ML": 51.69,
+                "LOCION RESTAURADORA DE CABELLO C.L. X340ml": 50.81,
+                "PERLA VITAROSA Crema Limpia Pecas Tubo X 20 g": 90.78,
+                "PLACENTEX CARLA LORENA 15mL X 9 AMP": 146.94,
+                "PLACENTEX CARLA LORENA 15mL X 3 AMP": 51.9,
+                "SHAMPOO ANTICASPA C.L. X 350 mL": 45.6,
+                "SHAMPOO AVENA C.L. 350 mL": 27.7,
+                "SHAMPOO AVENA C.L. 700 mL": 38.26,
+                "SHAMPOO BEBE C.L. X 350 mL": 29.77,
+                "SHAMPOO BEBE C.L. X 700 mL": 41.13,
+                "SHAMPOO FRUTILLA C.L. X 350 mL": 27.7,
+                "SHAMPOO FRUTILLA C.L. X 700 mL": 38.26,
+                "SHAMPOO HUEVO C.L. X 350 mL": 27.7,
+                "SHAMPOO HUEVO C.L. X 700 mL": 38.26,
+                "SOL VITAROSA FACIAL CON COLOR SPF 50+ TUBO X 50 ML": 98.44,
+                "SOL VITAROSA NIÑOS SPF 50+ TUBO X 150 ML": 107.76,
+                "VITALIMON CREMA BLANQUEADORA X 24 G": 42.39,
+                "VITAROSA SERUM NIACINAMIDA X 30 ML": 133.29,
+                "VITAROSA SERUM VITAMINA C X 30 ML": 175.94,
+                "VITAROSA NF NIACINAMIDA CREMA LIMPIA PECAS X 27G": 56.17,
+                "CERA LIQUIDA LORITO X 1000 mL": 39.58,
+                "CERA LIQUIDA PINO LORITO X 1000 mL": 39.58,
+                "PURIFICADOR DE AMBIENTE x 90 g": 21.59,
+                "CERA LIQUIDA MARSELLA X 1000 mL": 29.98
           };
-
-        
           function addProduct() {
             const container = document.getElementById('product-section');
 
@@ -185,15 +185,53 @@
             //add inputs
             productDiv.innerHTML = `
               <label>Producto:
-                  <input type="text" name="productName[]" class="product-input" list="productos" required>
+                <input type="text" name="productName[]" class="product-input" list="productos" required>
+                <datalist id="productos">
+                    <option value = "ACONDICIONADOR AVENA C.L. X 350 mL">
+                    <option value = "ACONDICIONADOR AVENA C.L. X 700 mL">
+                    <option value = "ACONDICIONADOR FRUTILLA C.L. X 350 mL">
+                    <option value = "ACONDICIONADOR FRUTILLA C.L. X 700 mL">
+                    <option value = "ACONDICIONADOR HUEVO C.L. X 350 mL">
+                    <option value = "ACONDICIONADOR HUEVO C.L. X 700 mL">
+                    <option value = "AQUA SENSITIVE X 55 G">
+                    <option value = "GEL AVENA C.L. X 350 mL">
+                    <option value = "GEL FRUTILLA C.L. X 350 mL">
+                    <option value = "LECHE DE ALMENDRAS C.L. X 300 ML">
+                    <option value = "LECHE DE AVENA C.L. X 300 ML">
+                    <option value = "LECHE DE PEPINOS C.L. X 300 mL">
+                    <option value = "LECHE DE ROSAS C.L. Fco. X 300 mL">
+                    <option value = "LECHE DE KARITÉ C.L. X 300 ML">
+                    <option value = "LOCION RESTAURADORA DE CABELLO C.L. X340ml">
+                    <option value = "PERLA VITAROSA Crema Limpia Pecas Tubo X 20 g">
+                    <option value = "PLACENTEX CARLA LORENA 15mL X 9 AMP">
+                    <option value = "PLACENTEX CARLA LORENA 15mL X 3 AMP">
+                    <option value = "SHAMPOO ANTICASPA C.L. X 350 mL">
+                    <option value = "SHAMPOO AVENA C.L. 350 mL">
+                    <option value = "SHAMPOO AVENA C.L. 700 mL">
+                    <option value = "SHAMPOO BEBE C.L. X 350 mL">
+                    <option value = "SHAMPOO BEBE C.L. X 700 mL">
+                    <option value = "SHAMPOO FRUTILLA C.L. X 350 mL">
+                    <option value = "SHAMPOO FRUTILLA C.L. X 700 mL">
+                    <option value = "SHAMPOO HUEVO C.L. X 350 mL">
+                    <option value = "SHAMPOO HUEVO C.L. X 700 mL">
+                    <option value = "SOL VITAROSA FACIAL CON COLOR SPF 50+ TUBO X 50 ML">
+                    <option value = "SOL VITAROSA NIÑOS SPF 50+ TUBO X 150 ML">
+                    <option value = "VITALIMON CREMA BLANQUEADORA X 24 G">
+                    <option value = "VITAROSA SERUM NIACINAMIDA X 30 ML">
+                    <option value = "VITAROSA SERUM VITAMINA C X 30 ML">
+                    <option value = "VITAROSA NF NIACINAMIDA CREMA LIMPIA PECAS X 27G">
+                    <option value = "CERA LIQUIDA LORITO X 1000 mL">
+                    <option value = "CERA LIQUIDA PINO LORITO X 1000 mL">
+                    <option value = "PURIFICADOR DE AMBIENTE x 90 g">
+                    <option value = "CERA LIQUIDA MARSELLA X 1000 mL">
+                </datalist>
               </label>
               <label>Cantidad:
-                  <input type="number" name="productQty[]" min="1" required>
+                <input type="number" name="productQty[]" min="1" required>
               </label>
               <label>Precio (por unidad):
-                  <span class="price-display">0</span> Bs
-                  <input type="hidden" name="productPrice[]">
-              </label>
+                  <input type="number" name="productPrice[]" readonly>
+                </label>
               <button type="button" onclick="removeProduct(this)">x Quitar este producto</button>
             `;
 
@@ -201,8 +239,8 @@
           }
 
           function removeProduct(button) {
-              const entry = button.closest('.product-entry');
-              if (entry) entry.remove(); 
+            const entry = button.closest('.product-entry');
+            if (entry) entry.remove();
           }
 
           document.addEventListener("input", function (e) {
@@ -210,14 +248,8 @@
                   const name = e.target.value;
                   const price = priceList[name] ?? 0;
 
-                  const entry = e.target.closest(".product-entry");
-                  const priceField = entry.querySelector('input[name="productPrice[]"]');
-                  const priceDisplay = entry.querySelector('.price-display');
-
-                  if (priceField && priceDisplay) {
-                      priceField.value = price;
-                      priceDisplay.textContent = price;
-                  }
+                  const priceField = e.target.closest(".product-entry").querySelector('input[name="productPrice[]"]');
+                  if (priceField) priceField.value = price;
               }
           });
 
@@ -229,6 +261,9 @@
             localStorage.removeItem("authorized");
           })
 
+          //send info to google sheet
+          //const scriptURL = 'https://script.google.com/macros/s/AKfycbw1uKyDYFpor7SH_AAjX1gmvuZJ_BhfzBKhjMl5097xtNP_Hz6h-ym90z_JlELgDUWM/exec';
+            
           function sendToGoogleSheet(event) 
           {
               event.preventDefault();
@@ -236,16 +271,20 @@
               const form = document.getElementById("survey-form");
               const formData = new FormData(form);
 
+              const maxProducts = 10;
+
               const names = formData.getAll("productName[]");
               const qtys = formData.getAll("productQty[]");
               const prices = formData.getAll("productPrice[]");
             
               const sharedData = {
+                "empresa-nombre": formData.get("empresa-nombre"),
+                "ciudad-nombre": formData.get("ciudad-nombre"),
                 "nombre": formData.get("nombre"),
                 "apellido": formData.get("apellido"),
-                "ciudad": formData.get("ciudad-nombre"),
+                "numero-contacto": formData.get("numero-contacto"),
+                "email": formData.get("email"),
                 "direccion": formData.get("direccion"),
-                "numero": formData.get("numero-contacto"),
               };
 
               const submissionPromises = names.map((name, i) => {
@@ -259,19 +298,20 @@
                       "subtotal": (parseInt(qtys[i]) * parseFloat(prices[i])).toFixed(2)
                   };
 
-                  return fetch("https://sheetdb.io/api/v1/43vnkdlnkhl3o", {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ data: row }) 
+                  return fetch("https://sheetdb.io/api/v1/pfy3wcuhrm77u", {
+                      method: "POST", 
+                      headers: {
+                          "Content-Type": "application/json"
+                      },
+                      body: JSON.stringify({ data: row })
                   });
               });
 
+              //order summary
               const resumen = {
                   ...sharedData,
                   productos: [],
-                  total: 0;
+                  total: 0
               };
 
               names.forEach((name, i) => {
@@ -290,7 +330,9 @@
               });
               resumen.total = resumen.total.toFixed(2);
               localStorage.setItem("pedidoResumen", JSON.stringify(resumen));
-            
+
+              console.log("Resumen:", resumen);
+              
               Promise.all(submissionPromises.filter(Boolean))
                   .then(responses => {
                   console.log("Responses:", responses);
@@ -307,7 +349,48 @@
                   alert("Error al enviar el pedido. Intente nuevamente.");
                   console.error("Fetch error:", error);
               });
+
+              /*for(let i = 0; i < maxProducts; i++) {
+                data[`producto_${i+1}`] = names[i] || "";
+                data[`cantidad_${i+1}`] = qtys[i] || "";
+                data[`precio_${i+1}`] = prices[i] || "";
+                if(names[i] && qtys[i] && prices[i]) {
+                  data[`subtotal_${i+1}`] = (parseInt(qtys[i]) * parseFloat(prices[i])).toFixed(2);
+                } else {
+                  data[`subtotal_${i+1}`] = "";
+                }
+              }
+              const total = names.reduce((sum, _, i) => {
+                const qty = parseInt(qtys[i]) || 0;
+                const price = parseFloat(prices[i]) || 0;
+                return sum + qty * price;
+              }, 0).toFixed(2);
+            
+              data["total"] = total;
+              
+              localStorage.setItem("pedidoResumen", JSON.stringify(data));
+              //console.log("Sending to sheetdb:", data);
+
+              fetch("https://sheetdb.io/api/v1/pfy3wcuhrm77u", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ data: row })  // key 'data'
+              })
+              .then(response => {
+                if (response.ok) {
+                  window.location.href="gracias.html";
+                } else {
+                  throw new Error("Error al enviar los datos.");
+                }
+              })
+              .catch(error => {
+                alert("Error al enviar el pedido. Intente nuevamente.");
+                console.error(error);
+              });*/
             }
+
         </script>
     </body>
 </html>
