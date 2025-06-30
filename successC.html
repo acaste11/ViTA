@@ -312,9 +312,9 @@
               const sharedData = {
                 "nombre": formData.get("nombre"),
                 "apellido": formData.get("apellido"),
-                "ciudad": formData.get("ciudad"),
-                "numero": formData.get("numero-contacto"),
+                "ciudad": formData.get("ciudad-nombre"),
                 "direccion": formData.get("direccion"),
+                "numero": formData.get("numero-contacto"),
               };
 
               const submissionPromises = names.map((name, i) => {
