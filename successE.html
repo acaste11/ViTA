@@ -135,6 +135,22 @@
               </form>
         </main>
         <script>
+
+          function updateTotal() {
+              const productEntries = document.querySelectorAll('.product-entry');
+              let total = 0;
+
+              productEntries.forEach(entry => {
+                  const qtyInput = entry.querySelector('input[name="productQty[]"]');
+                  const priceInput = entry.querySelector('input[name="productPrice[]"]');
+
+                  const qty = parseInt(qtyInput?.value) || 0;
+                  const price = parseFloat(priceInput?.value) || 0;
+
+                  total += qty * price;
+              });
+              document.getElementById('totalDisplay').textContent = total.toFixed(2);
+          }
             
           const priceList = {
                 "ACONDICIONADOR AVENA C.L. X 350 mL": 32,
@@ -175,6 +191,22 @@
                 "PURIFICADOR DE AMBIENTE x 90 g": 24,
                 "CERA LIQUIDA MARSELLA X 1000 mL": 33
           };
+
+          document.addEventListener('input', (e) => {
+              if (e.target.matches('input.product-input')) 
+              {
+                const name = e.target.value;
+                const priceField = e.target.closest('.product-entry').querySelector('input[name="productPrice[]"]');
+                if (priceField) {
+                  priceField.value = priceList[name] ?? '';
+                }
+                updateTotal(); 
+              }
+            
+              if (e.target.matches('input[name="productQty[]"]')) {
+                updateTotal();
+              }
+            });
           function addProduct() {
             const container = document.getElementById('product-section');
 
@@ -236,11 +268,13 @@
             `;
 
             container.insertBefore(productDiv, container.lastElementChild);
+            updateTotal();
           }
 
           function removeProduct(button) {
             const entry = button.closest('.product-entry');
             if (entry) entry.remove();
+            updateTotal();
           }
 
           document.addEventListener("input", function (e) {
