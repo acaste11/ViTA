@@ -71,27 +71,62 @@
       </div>
 
       <div id="unirse" class="content">
-        <h2>¿Porque distribuir productos VITA?</h2>
+        <h2>Inscríbase a nuestro sistema para acceder nuestros precios y conseguir nuestros productos.</h2>
+        <h3>Por favor llene su información:</h3>
         <ul>
-          <li>Recomiende a sus clientes los productos de mejor calidad para su salud.</li>
-          <li>Gane un porcentaje de las ventas generadas cuando sus clientes utilicen su código personalizado.</li>
-          <li>Únase como miembro a nuestro sistema de beneficios, donde el tiempo que comparte con nosotros se traduce en recompensas.</li>
-          <li>Entérese primero de nuestros nuevos productos y novedades.</li>
+          <li>Nombre y apelido</li>
+          <li>Numero de carnet (su código de usuario sera 'C[numero de carnet]'</li>
         </ul>
 
         <form>
           <label id="name-label">Nombre: 
             <input id="join-name" type="text" name="name" placeholder="Jaime Rodriguez" required>
           </label>
-          <label id="email-label">Correo electrónico: 
-            <input id="join-email" type="email" name="email" size="30" placeholder="jrodriguez@gmail.com" required>
+          <label id="carnet">Número de carnet: 
+            <input id="carnet" type="text" name="carnet" size="30" placeholder="12345678" required>
           </label>
-          <button id="submit" type="submit"> Solicitar información</button>
+          <button id="submit" type="submit">Inscribir</button>
         </form>
       </div>
     </main>
 
     <script>
+      const form = document.querySelector('#unirse form');
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const fullName = document.getElementById('join-name').value.trim();
+        const carnet = document.getElementById('carnet').value.trim();
+        const userId = `C${carnet}`;
+
+        if (!fullName || !carnet) {
+          alert("Por favor llene todos los campos.");
+          return;
+        }
+
+        const newUser = {
+          name: fullName, 
+          id: userId
+        };
+
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+
+        //duplicates
+        const duplicate = users.dinf(u => u.id === userId);
+        if (duplicate) {
+          alert("Este código de usuario ya está registrado.");
+          return;
+        }
+
+        //add new one
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users));
+
+        alert(`¡Gracias por registrarse! Su código de usuario es: ${userId}`);
+        form.reset();
+      });
+      
       function showContent(id) {
         const sections = document.querySelectorAll('.content');
         sections.forEach(section => section.classList.remove('active'));
