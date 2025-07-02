@@ -41,19 +41,6 @@
                     <span>Hogar</span>
                   </a>
                   
-                  <a href="https://vita.com.bo/digestan/" target="_blank" rel="noopener noreferrer" class="product-button">
-                    <img src="digestan.png" alt="Digestan">
-                    <span>Digestan</span>
-                  </a>
-                  
-                  <a href="https://vita.com.bo/placentex/" target="_blank" rel="noopener noreferrer" class="product-button">
-                    <img src="placentex.png" alt="imagen de placentex">
-                    <span>Placentex</span>
-                  </a>
-                  <a href="https://vita.com.bo/linea-invierno/" target="_blank" rel="noopener noreferrer" class="product-button">
-                    <img src="vitagrip.png">
-                    <span>Línea Invernal</span>
-                  </a>
               </div>
             
 
@@ -138,21 +125,6 @@
             if (!isAuthorized) 
             {
                 alert("Accesso denegado.");
-                window.location.href = "clientes.html";
-            }else 
-            {
-                const users = JSON.parse(localStorage.getItem('users')) || [];
-                const userList = document.getElementById('userList');
-
-                users.forEach(user => {
-                    const li = document.createElement('li');
-                    li.textContent = `Nombre: ${user.name}, ID: ${user.id}`;
-                    userList.appendChild(li);
-                });
-            }
-
-            function logout() {
-                localStorage.removeItem("authorized");
                 window.location.href = "clientes.html";
             }
                 
