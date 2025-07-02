@@ -106,62 +106,63 @@
       const sheetDBurl = "https://sheetdb.io/api/v1/8cn78y58adxsf";
       //const form = document.querySelector('#unirse form');
 
-      document.getElementById('registration-form').addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-        //debug
-        console.log(
-          "join-name:", document.getElementById('join-name'),
-          "join-lastname:", document.getElementById('join-lastname'),
-          "carnet:", document.getElementById('carnet')
-        );
-
-
-        const firstName = document.getElementById('join-name').value.trim();
-        const lastName = document.getElementById('join-lastname').value.trim();
-        const carnet = document.getElementById('carnet').value.trim();
-
-        if (!firstName || !lastName || !carnet) {
-          alert("Por favor llene todos los campos");
-          return;
-        }
-
-        const userId = `C${carnet}`;
-
-        //prepare data for sheet
-        const data = {
-          data: {
-            firstName: firstName, 
-            lastName: lastName,
-            userId: userId
+      window.onload = function() {
+        document.getElementById('registration-form').addEventListener('submit', async (event) => {
+          event.preventDefault();
+  
+          //debug
+          console.log(
+            "join-name:", document.getElementById('join-name'),
+            "join-lastname:", document.getElementById('join-lastname'),
+            "carnet:", document.getElementById('carnet')
+          );
+  
+  
+          const firstName = document.getElementById('join-name').value.trim();
+          const lastName = document.getElementById('join-lastname').value.trim();
+          const carnet = document.getElementById('carnet').value.trim();
+  
+          if (!firstName || !lastName || !carnet) {
+            alert("Por favor llene todos los campos");
+            return;
           }
-        };
-
-        try {
-          //check for user
-
-          //tod add new user
-          const response = await fetch(sheetDBurl, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-          });
-
-          if (response.ok) {
-            alert(`¡Gracias por registrarse! Su código de usuario es: ${userId}`);
-            event.target.reset();
-          } else {
-            alert("Error al registrarse. Por favor, inténtelo nuevamente.");
-            console.error("Error response:", response);
+  
+          const userId = `C${carnet}`;
+  
+          //prepare data for sheet
+          const data = {
+            data: {
+              firstName: firstName, 
+              lastName: lastName,
+              userId: userId
+            }
+          };
+  
+          try {
+            //check for user
+  
+            //tod add new user
+            const response = await fetch(sheetDBurl, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(data)
+            });
+  
+            if (response.ok) {
+              alert(`¡Gracias por registrarse! Su código de usuario es: ${userId}`);
+              event.target.reset();
+            } else {
+              alert("Error al registrarse. Por favor, inténtelo nuevamente.");
+              console.error("Error response:", response);
+            }
+          }catch (error) {
+            alert("Error al enviar datos al servidor.");
+            console.error(error);
           }
-        }catch (error) {
-          alert("Error al enviar datos al servidor.");
-          console.error(error);
-        }
-      });
-      
+        });
+      } 
     </script>
   </body>
 </html>
