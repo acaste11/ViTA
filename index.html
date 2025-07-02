@@ -74,13 +74,17 @@
         <h2>Inscríbase a nuestro sistema para acceder nuestros precios y conseguir nuestros productos.</h2>
         <h3>Por favor llene su información:</h3>
         <ul>
-          <li>Nombre y apelido</li>
+          <li>Nombre</li>
+          <li>Apellido</li>
           <li>Numero de carnet (su código de usuario sera 'C[numero de carnet]'</li>
         </ul>
 
-        <form>
+        <form id="registration-form">
           <label id="name-label">Nombre: 
-            <input id="join-name" type="text" name="name" placeholder="Jaime Rodriguez" required>
+            <input id="join-name" type="text" name="firstname" placeholder="Jaime" required>
+          </label>
+          <label>Apellido:
+            <input id="join-lastname" type="text" name="lastName" placeholder="Rodriguez" required>
           </label>
           <label id="carnet">Número de carnet: 
             <input id="carnet" type="text" name="carnet" size="30" placeholder="12345678" required>
@@ -91,40 +95,53 @@
     </main>
 
     <script>
-      const form = document.querySelector('#unirse form');
+      const sheetDBurl = "https://sheetdb.io/api/v1/8cn78y58adxsf";
+      //const form = document.querySelector('#unirse form');
 
-      form.addEventListener('submit', function(event) {
+      document.getElementById('registration-form').addEventListener('submit', async (event) => {
         event.preventDefault();
 
-        const fullName = document.getElementById('join-name').value.trim();
+        const firstName = document.getElementById('join-name').value.trim();
+        const lastName = document.getElementById('join-lastname').value.trim();
         const carnet = document.getElementById('carnet').value.trim();
+
+        if (!firstName || !lastName || !carnet) {
+          alert("Por favor llene todos los campos");
+          return;
+        }
+
         const userId = `C${carnet}`;
 
-        if (!fullName || !carnet) {
-          alert("Por favor llene todos los campos.");
-          return;
-        }
-
-        const newUser = {
-          name: fullName, 
-          id: userId
+        //prepare data for sheet
+        const data = {
+          data: {
+            firstName: firstName, 
+            lastName: lastName,
+            userId: userId
+          }
         };
 
-        let users = JSON.parse(localStorage.getItem('users')) || [];
+        try {
+          //check for user
 
-        //duplicates
-        const duplicate = users.find(u => u.id === userId);
-        if (duplicate) {
-          alert("Este código de usuario ya está registrado.");
-          return;
+          //tod add new user
+          const response = await fetch(sheetDBurl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            });
+
+          if (response.ok) {
+            alert(`¡Gracias por registrarse! Su código de usuario es: ${userId}`);
+            event.target.reset();
+          } else {
+            alert("Error al registrarse. Por favor, inténtelo nuevamente.");
+            console.error("Error response:", response);
+          }
+        }catch (error) {
+          alert("Error al enviar datos al servidor.");
+          console.error(error);
         }
-
-        //add new one
-        users.push(newUser);
-        localStorage.setItem('users', JSON.stringify(users));
-
-        alert(`¡Gracias por registrarse! Su código de usuario es: ${userId}`);
-        form.reset();
       });
       
       function showContent(id) {
