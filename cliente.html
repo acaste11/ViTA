@@ -39,20 +39,38 @@
                       const code = document.getElementById("code").value.trim();
                 
                       const fullName = `${name} ${apellido}`;
+                      const sheetDBurl = "https://sheetdb.io/api/v1/prdxxll5rtg9w";
                 
                       try {
-                        const sheetDBurl = "https://sheetdb.io/api/v1/8cn78y58adxsf";
+                        //const sheetDBurl = "https://sheetdb.io/api/v1/8cn78y58adxsf";
                 
-                        const response = await fetch(sheetDBurl);
+                        const response = await fetch(`${sheetDBurl}?userId=${encodeURIComponent(code)}`);
                         if (!response.ok) {
                           alert("Error al obtener usuarios del servidor.");
                           return;
                         }
-                
+
                         const data = await response.json();
                 
+                        if (data.length === 0) {
+                            alert("Código de usuario no encontrado.");
+                            return;
+                        }
+
+                        //check name match
+                        const user = data.find(row =>
+                            `${row.firstName.toLowerCase()} ${row.lastName.toLowerCase()}` === `${name} ${apellido}`
+                        );
+
+                        if (user) {
+                            localStorage.setItem("authorized", "true");
+                            window.location.href = "successC.html";
+                        } else {
+                            alert("Nombre y apellido no coinciden con el código.");
+                        }
+                
                         // Adjust field names below to columns
-                        const users = data.map(row => ({
+                        /*const users = data.map(row => ({
                           name: `${row.firstName.toLowerCase()} ${row.lastName.toLowerCase()}`,
                           id: row.userId
                         }));
@@ -64,7 +82,7 @@
                           window.location.href = "successC.html";
                         } else {
                           alert("Información incorrecta");
-                        }
+                        }*/
                       } catch (error) {
                         alert("Error al validar usuario.");
                         console.error(error);
