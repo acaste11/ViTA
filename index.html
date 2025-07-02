@@ -103,7 +103,7 @@
         if(selected) selected.classList.add('active');
       }
       
-      const sheetDBurl = "https://sheetdb.io/api/v1/8cn78y58adxsf";
+      const sheetDBurl = "https://sheetdb.io/api/v1/prdxxll5rtg9w";
       //const form = document.querySelector('#unirse form');
 
       window.onload = function() {
@@ -145,7 +145,8 @@
             const response = await fetch(sheetDBurl, {
               method: "POST",
               headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "Bearer https://sheetdb.io/api/v1/prdxxll5rtg9w"
               },
               body: JSON.stringify(data)
             });
