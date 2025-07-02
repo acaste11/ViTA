@@ -80,11 +80,11 @@
         </ul>
 
         <form id="registration-form">
-          <label for="name-label">Nombre: 
+          <label for="join-name">Nombre: 
             <input id="join-name" type="text" name="firstname" placeholder="Jaime" required>
           </label>
-          <label for="apellido">Apellido:
-            <input id="join-lastname" type="text" name="lastName" placeholder="Rodriguez" required>
+          <label for="join-lastname">Apellido:
+            <input id="join-lastname" type="text" name="lastname" placeholder="Rodriguez" required>
           </label>
           <label for="carnet">Número de carnet: 
             <input id="carnet" type="text" name="carnet" size="30" placeholder="12345678" required>
@@ -108,6 +108,14 @@
 
       document.getElementById('registration-form').addEventListener('submit', async (event) => {
         event.preventDefault();
+
+        //debug
+        console.log(
+          "join-name:", document.getElementById('join-name'),
+          "join-lastname:", document.getElementById('join-lastname'),
+          "carnet:", document.getElementById('carnet')
+        );
+
 
         const firstName = document.getElementById('join-name').value.trim();
         const lastName = document.getElementById('join-lastname').value.trim();
