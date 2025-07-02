@@ -30,21 +30,24 @@
               </form>
 
               <script>
-                const validUsers = [
+                /*const validUsers = [
                     { name: "Jaime", apellido: "Rodriguez", code: "C123456"},
                     { name: "Analia", apellido: "Castellanos", code: "C654321"}
-                ];
+                ];*/
 
                 function validateUser(event) {
                     event.preventDefault();
                     const name = document.getElementById("name").value.trim();
                     const apellido = document.getElementById("apellido").value.trim();
                     const code = document.getElementById("code").value.trim();
+                    const fullName = `${name} ${apellido}`;
 
-                    const match = validUsers.find(user =>
-                        user.name.toLowerCase() === name.toLowerCase() &&
-                        user.apellido.toLowerCase() === apellido.toLowerCase() &&
-                        user.code === code
+                    //users from localstorage
+                    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+                    const match = users.find(user =>
+                        user.name.toLowerCase() === fullName.tolowerCase() && 
+                        user.id === code
                     );
 
                     if (match) {
