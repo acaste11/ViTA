@@ -95,6 +95,13 @@
     </main>
 
     <script>
+      function showContent(id) {
+        const sections = document.querySelectorAll('.content');
+        sections.forEach(section => section.classList.remove('active'));
+        const selected = document.getElementById(id);
+        if(selected) selected.classList.add('active');
+      }
+      
       const sheetDBurl = "https://sheetdb.io/api/v1/8cn78y58adxsf";
       //const form = document.querySelector('#unirse form');
 
@@ -144,12 +151,6 @@
         }
       });
       
-      function showContent(id) {
-        const sections = document.querySelectorAll('.content');
-        sections.forEach(section => section.classList.remove('active'));
-        const selected = document.getElementById(id);
-        if(selected) selected.classList.add('active');
-      }
     </script>
   </body>
 </html>
