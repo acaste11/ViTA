@@ -137,7 +137,9 @@
             method: "POST",
             headers: {
               "Content-Type": "application/json"
-            });
+            },
+            body: JSON.stringify(data);
+          });
 
           if (response.ok) {
             alert(`¡Gracias por registrarse! Su código de usuario es: ${userId}`);
