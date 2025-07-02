@@ -11,7 +11,9 @@
         <header>
             <h1>¡Bienvenido!</h1>
         </header>
-
+        
+        <ul id="userList"></ul>
+        
         <main>
           <form id="survey-form" onsubmit="sendToGoogleSheet(event)">
               
@@ -129,7 +131,31 @@
             <button id="submit" type="submit"> Enviar</button>
           </form>
         </main>
+        <button onclick = "logout()">Cerrar sesión</button>
+        
         <script>
+            const isAuthorized = localStorage.getItem("authorized") === "true";
+            if (!isAuthorized) 
+            {
+                alert("Accesso denegado.");
+                window.location.href = "clientes.html";
+            }else 
+            {
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const userList = document.getElementById('userList');
+
+                users.forEach(user => {
+                    const li = document.createElement('li');
+                    li.textContent = `Nombre: ${user.name}, ID: ${user.id}`;
+                    userList.appendChild(li);
+                });
+            }
+
+            function logout() {
+                localStorage.removeItem("authorized");
+                window.location.href = "clientes.html";
+            }
+                
             function updateTotal() 
             {
               const productEntries = document.querySelectorAll('.product-entry');
