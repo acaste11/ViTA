@@ -96,6 +96,7 @@
 
     <script>
       function showContent(id) {
+        console.log("Switching to:", id); //debug
         const sections = document.querySelectorAll('.content');
         sections.forEach(section => section.classList.remove('active'));
         const selected = document.getElementById(id);
