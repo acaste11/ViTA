@@ -23,19 +23,59 @@
                 </label>
           
                 <label for="code">Código de usuario: 
-                  <input id="code" type="text" name="code" placeholder="C1234567" required>
+                  <input id="code" type="text" name="code" placeholder="C12345678" required>
                 </label>
           
                 <button id="submit" type="submit">Siguiente</button>
               </form>
 
               <script>
+                  async function validateUser(event) 
+                  {
+                      event.preventDefault();
+                
+                      const name = document.getElementById("name").value.trim().toLowerCase();
+                      const apellido = document.getElementById("apellido").value.trim().toLowerCase();
+                      const code = document.getElementById("code").value.trim();
+                
+                      const fullName = `${name} ${apellido}`;
+                
+                      try {
+                        const sheetDBurl = "https://sheetdb.io/api/v1/8cn78y58adxsf";
+                
+                        const response = await fetch(sheetDBurl);
+                        if (!response.ok) {
+                          alert("Error al obtener usuarios del servidor.");
+                          return;
+                        }
+                
+                        const data = await response.json();
+                
+                        // Adjust field names below to columns
+                        const users = data.map(row => ({
+                          name: `${row.firstName.toLowerCase()} ${row.lastName.toLowerCase()}`,
+                          id: row.userId
+                        }));
+                
+                        const match = users.find(user => user.name === fullName && user.id === code);
+                
+                        if (match) {
+                          localStorage.setItem("authorized", "true");
+                          window.location.href = "successC.html";
+                        } else {
+                          alert("Información incorrecta");
+                        }
+                      } catch (error) {
+                        alert("Error al validar usuario.");
+                        console.error(error);
+                      }
+                  }
                 /*const validUsers = [
                     { name: "Jaime", apellido: "Rodriguez", code: "C123456"},
                     { name: "Analia", apellido: "Castellanos", code: "C654321"}
                 ];*/
 
-                function validateUser(event) {
+                /*function validateUser(event) {
                     event.preventDefault();
                     const name = document.getElementById("name").value.trim();
                     const apellido = document.getElementById("apellido").value.trim();
@@ -57,7 +97,7 @@
                     else {
                         alert("Información incorrecta");
                     }
-                }
+                }*/
               </script>
         </main>
     </body>
