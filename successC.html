@@ -138,13 +138,10 @@
                 const storedApellido = localStorage.getItem("apellido") || "";
 
                 //capitalized
-                const capitalizedNombre = capitalizeWords(storedNombre);
-                const capitalizedApellido = capitalizeWords(storedApellido);
-
-                document.getElementById("nombreDisplay").textContent = capitalizedNombre;
+                document.getElementById("nombreDisplay").textContent = capitalizeWords(storedNombre);
                 document.getElementById("nombre").value = storedNombre;
 
-                document.getElementById("apellidoDisplay").textContent = capitalizedApellido;
+                document.getElementById("apellidoDisplay").textContent = capitalizeWords(storedApellido);
                 document.getElementById("apellido").value = storedApellido;
 
                 /*if (storedNombre) 
@@ -347,6 +344,9 @@
                   "direccion": formData.get("direccion") || "",
                   "numero": formData.get("numero") || "",
                 };
+
+                console.log("Nombre:", sharedData.nombre);
+                console.log("Apellido:", sharedData.apellido);
               
 
                 const submissionPromises = names.map((name, i) => {
