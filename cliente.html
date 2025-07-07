@@ -37,6 +37,11 @@
                       const name = document.getElementById("name").value.trim().toLowerCase();
                       const apellido = document.getElementById("apellido").value.trim().toLowerCase();
                       const code = document.getElementById("code").value.trim();
+                      
+
+                      localStorage.setItem("nombre", nombre);
+                      localStorage.setItem("apellido", apellido);
+                      localStorage.setItem("code", code);
                 
                       const fullName = `${name} ${apellido}`;
                       const sheetDBurl = "https://sheetdb.io/api/v1/prdxxll5rtg9w";
