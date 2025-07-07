@@ -126,6 +126,18 @@ nav a.content.active{
   border-radius: 12px;
 }
 
+input.product-input {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 1em;
+}
+
+label {
+  display: block;
+  width: 100%;
+}
+
 .text p {
   max-width: 500px;
   font-size: 1.1em;
