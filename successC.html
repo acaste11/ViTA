@@ -18,7 +18,7 @@
           <form id="survey-form" onsubmit="sendToGoogleSheet(event)">
               
             <label for="nombre">Su nombre: 
-              <input id="nombre" type="text" name="nombre" placeholder="Jaime" required>
+              <input id="nombre" type="hidden" name="nombre" value="">
             </label>
 
             <label for="apellido">Su apellido: 
@@ -127,6 +127,14 @@
                 alert("Accesso denegado.");
                 window.location.href = "clientes.html";
             }
+
+            //get name
+            window.onload = function() {
+                const storedNombre = localStorage.getItem("nombre");
+                if (storedNombre) {
+                    document.getElementById("nombreDisplay").textContent = storedNombre;
+                    document.getElementById("nombre").value = storedNombre;
+                }
             
             function updateTotal() 
             {
