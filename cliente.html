@@ -67,6 +67,12 @@
                             `${row.firstName.toLowerCase()} ${row.lastName.toLowerCase()}` === `${nombre} ${apellido}`
                         );
 
+                        data.forEach(row => {
+                            console.log(`Servidor: ${row.firstName} ${row.lastName}`);
+                            console.log(`Input: ${nombre} ${apellido}`);
+                            console.log(`${row.firstName.toLowerCase()} ${row.lastName.toLowerCase()}` === `${nombre} ${apellido}`);
+                        });
+
                         if (user) {
                             localStorage.setItem("authorized", "true");
                             window.location.href = "successC.html";
