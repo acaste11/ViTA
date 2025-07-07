@@ -17,9 +17,8 @@
         <main>
           <form id="survey-form" onsubmit="sendToGoogleSheet(event)">
               
-            <label for="nombre">Su nombre: 
-              <input id="nombre" type="hidden" name="nombre" value="">
-            </label>
+            <p><strong>Nombre:</strong> <span id="nombreDisplay"></span></p>
+            <input id="nombre" type="hidden" name="nombre" value="">
 
             <label for="apellido">Su apellido: 
               <input id="apellido" type="text" name="apellido" placeholder="Rodriguez" required>
