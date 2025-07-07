@@ -20,9 +20,8 @@
             <p><strong>Nombre:</strong> <span id="nombreDisplay"></span></p>
             <input id="nombre" type="hidden" name="nombre" value="">
 
-            <label for="apellido">Su apellido: 
-              <input id="apellido" type="text" name="apellido" placeholder="Rodriguez" required>
-            </label>
+            <p><strong>Apellido:</strong> <span id="apellidoDisplay"></span></p>
+            <input id="apellido" type="hidden" name="nombre" value="">
             
             <div id="product-section">
               <h3>Productos</h3>
@@ -127,13 +126,37 @@
                 window.location.href = "clientes.html";
             }
 
+             //capitalization
+            function capitalizeWords(str) {
+                return str.replace(/\b\w/g, char => char.toupperCase());
+            }
+            
             //get name
-            window.onload = function() {
-                const storedNombre = localStorage.getItem("nombre");
-                if (storedNombre) {
+            window.onload = function() 
+            {
+                const storedNombre = localStorage.getItem("nombre") || "";
+                const storedApellido = localStorage.getItem("apellido") || "";
+
+                //capitalized
+                const capitalizedNombre = capitalizeWords(storedNombre);
+                const capitalizedApellido = capitalizeWords(storedApellido);
+
+                document.getElementById("nombreDisplay").textContent = capitalizedNombre;
+                document.getElementById("nombre").value = storedNombre;
+
+                document.getElementById("apellidoDisplay").textContent = capitalizedApellido;
+                document.getElementById("apellido").value = storedApellido;
+
+                /*if (storedNombre) 
+                {
                     document.getElementById("nombreDisplay").textContent = storedNombre;
                     document.getElementById("nombre").value = storedNombre;
                 }
+                if (storedApellido) 
+                {
+                    document.getElementById("apellidoDisplay").textContent = storedApellido;
+                    document.getElementById("apellido").value = storedApellido;
+                }*/
             }
             
             function updateTotal() 
