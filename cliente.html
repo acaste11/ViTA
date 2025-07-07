@@ -64,7 +64,7 @@
 
                         //check name match
                         const user = data.find(row =>
-                            `${row.firstName.toLowerCase()} ${row.lastName.toLowerCase()}` === `${nombre} ${apellido}`
+                            `${row.lastName.toLowerCase()} ${row.firstName.toLowerCase()}` === `${apellido} ${nombre}`
                         );
 
                         data.forEach(row => {
