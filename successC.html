@@ -131,22 +131,22 @@
             //llenar automaticamente
             const nombre = localStorage.getItem("nombre");
             const apellido = localStorage.getItem("apellido");
-            const code = localStorage.getItem("code");
+            //const code = localStorage.getItem("code");
 
             window.onload = function() {
                 const storedNombre = localStorage.getItem("nombre");
                 const storedApellido = localStorage.getItem("apellido");
-                const storedCode = localStorage.getItem("code");
+                //const storedCode = localStorage.getItem("code");
 
                 if (storedNombre) {
-                    docment.getElementById("nombre").value = storedNombre;
+                    document.getElementById("nombre").value = storedNombre;
                 }
                 if (storedApellido) {
                     document.getElementById("apellido").value = storedApellido;
                 }
-                if (storedCode) {
+                /*if (storedCode) {
                     document.getElementById("code").value = storedCode;
-                }
+                }*/
             };
             
             function updateTotal() 
