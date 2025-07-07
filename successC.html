@@ -134,6 +134,7 @@
                     document.getElementById("nombreDisplay").textContent = storedNombre;
                     document.getElementById("nombre").value = storedNombre;
                 }
+            }
             
             function updateTotal() 
             {
@@ -295,7 +296,7 @@
               });
             
               if (localStorage.getItem("authorized") !== "true") {
-                    window.location.href = "empresa.html";
+                    window.location.href = "cliente.html";
               }
 
               document.getElementById('survey-form').addEventListener('submit', () =>{
