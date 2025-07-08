@@ -82,16 +82,16 @@
                             <option value="(PT110025) CERA LIQUIDA MARSELLA X 1000 mL">
                         </datalist>
                     </label>
+
+                      <label>Cantidad:
+                        <input type="number" name="productQty[]" min="1" required>
+                      </label>
+    
+                      <label>Precio (por unidad):
+                        <input type="number" name="productPrice[]" readonly>
+                      </label>
+                      <button type="button" onclick="removeProduct(this)">x Quitar este producto</button>
                   </div>
-
-                  <label>Cantidad:
-                    <input type="number" name="productQty[]" min="1" required>
-                  </label>
-
-                  <label>Precio (por unidad):
-                    <input type="number" name="productPrice[]" readonly>
-                  </label>
-                  <button type="button" onclick="removeProduct(this)">x Quitar este producto</button>
 
                   <button type="button" onclick="addProduct()">+ Agregar otro producto</button>
                 </div>
