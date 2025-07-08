@@ -14,9 +14,8 @@
 
         <main>
             <form id="survey-form" onsubmit="sendToGoogleSheet(event)">
-                <label for="empresa">Nombre de empresa:
-                    <input id="empresa-nombre" type="text" name="empresa-nombre" placeholder="ViTA Laboratorios" required>
-                </label>
+                <p><strong>Empresa:</strong> <span id="empresaDisplay"></span></p>
+                <input id="empresa" type="hidden" name="empresa" value="">
 
                 <label for="ciudad">Ciudad:
                     <input id="ciudad-nombre" type="text" name="ciudad-nombre" placeholder="La Paz" required>
@@ -99,13 +98,11 @@
 
                 <h3>Total: Bs <span id="totalDisplay">0.00</span></h3>
                 
-                <label for="nombre">Su nombre: 
-                  <input id="nombre" type="text" name="nombre" placeholder="Jaime" required>
-                </label>
+                <p><strong>Nombre:</strong> <span id="nombreDisplay"></span></p>
+                <input id="nombre" type="hidden" name="nombre" value="">
 
-                <label for="apellido">Su apellido: 
-                  <input id="apellido" type="text" name="apellido" placeholder="Rodriguez" required>
-                </label>
+                <p><strong>Apellido:</strong> <span id="apellidoDisplay"></span></p>
+                <input id="apellido" type="hidden" name="apellido" value="">
 
                 <label for="numero">Numero de contacto:
                     <input id="numero-contacto" type="text" name="numero-contacto" size="30" placeholder="12345678">
@@ -180,6 +177,27 @@
                 "CERA LIQUIDA MARSELLA X 1000 mL": 33
           };
 
+          //capitalize
+          function capitalizeWords(str) {
+              return str.replace(/\b\w/g, char => char.toUpperCase());
+          }
+
+          //automatic name and empresa
+          window.onload = function() {
+              const storedEmpresa = localStorage.getItem("empresa") || "";
+              const storedNombre = localStorage.getItem("nombre") || "";
+              const storedApellido = localStorage.getItem("apellido") || "";
+
+              document.getElementById("empresaDisplay").textContent = capitalizeWords(storedEmpresa);
+              document.getElememtById("empresa").value = storedEmpresa;
+              
+              document.getElementById("nombreDisplay").textContent = capitalizeWords(storedNombre);
+              document.getElementById("nombre").value = storedNombre;
+
+              document.getElementById("apellidoDisplay").textContent = capitalizeWords(storedApellido);
+              document.getElementById("apellido").value = storedApellido;
+          }
+              
           document.addEventListener('input', (e) => {
               if (e.target.matches('input.product-input')) 
               {
