@@ -45,11 +45,19 @@
                     { name: "Analia", apellido: "Castellanos", code: "C654321"}
                 ];
 
+                  
                 function validateUser(event) {
                     event.preventDefault();
-                    const name = document.getElementById("name").value.trim();
-                    const apellido = document.getElementById("apellido").value.trim();
-                    const code = document.getElementById("code").value.trim();
+                    
+                    const name = document.getElementById("name").value.trim().toLowerCaswe();
+                    const apellido = document.getElementById("apellido").value.trim().toLowerCase();
+                    const code = document.getElementById("code").value.trim().toLowerCase();
+                    const empresa = document.getElementById("empresa").value.trim().toLowerCase();
+
+                    localStorage.setItem("nombre", nombre);
+                    localStorage.setItem("apellido", apellido);
+                    localStorage.setItem("code", code);
+                    localStorage.setItem("empresa", empresa);
 
                     const match = validUsers.find(user =>
                         user.name.toLowerCase() === name.toLowerCase() &&
