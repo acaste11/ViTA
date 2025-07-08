@@ -37,8 +37,8 @@
 
               <script>
                 const validUsers = [
-                    { empresa: "bcp", nombre: "Jaime", apellido: "Rodriguez", code: "C123456"},
-                    { empresa: "bcp", nombre: "Analia", apellido: "Castellanos", code: "C654321"}
+                    { empresa: "bcp", nombre: "jaime", apellido: "rodriguez", code: "C123456"},
+                    { empresa: "bcp", nombre: "analia", apellido: "castellanos", code: "C654321"}
                 ];
 
                 function validateUser(event) {
@@ -46,7 +46,7 @@
                     
                     const nombre = document.getElementById("nombre").value.trim().toLowerCase();
                     const apellido = document.getElementById("apellido").value.trim().toLowerCase();
-                    const code = document.getElementById("code").value.trim().toLowerCase();
+                    const code = document.getElementById("code").value.trim();
                     const empresa = document.getElementById("empresa").value.trim().toLowerCase();
 
                     localStorage.setItem("nombre", nombre);
