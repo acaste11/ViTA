@@ -13,7 +13,7 @@
         </header>
         <main>
             <form id="login" action="successE.html" method="get" onsubmit="validateUser(event)">
-                <label for="dropdown">Seleccione su empresa:
+                <label for="empresa">Seleccione su empresa:
                   <select id="empresa" name="empresa" required>
                     <option value="">(seleccionar)</option>
                     <option>Banco Unión</option>
@@ -60,7 +60,7 @@
                     localStorage.setItem("empresa", empresa);
 
                     const match = validUsers.find(user =>
-                        user.name.toLowerCase() === nombre.toLowerCase() &&
+                        user.nombre.toLowerCase() === nombre.toLowerCase() &&
                         user.code === code
                     );
 
