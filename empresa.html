@@ -54,12 +54,17 @@
                     localStorage.setItem("code", code);
                     localStorage.setItem("empresa", empresa);
 
+                    console.log("Input values:", {empresa, nombre, apellido, code});
+                    console.log("Valid users:", validUsers);
+                    
                     const match = validUsers.find(user =>
                         user.empresa === empresa &&
                         user.nombre.toLowerCase() === nombre.toLowerCase() &&
                         user.apellido.toLowerCase() === apellido.toLowerCase() &&
                         user.code === code
                     );
+
+                    console.log("match found:", match);
 
                     if (match) {
                         localStorage.setItem("authorized", "true");
