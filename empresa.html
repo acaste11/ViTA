@@ -41,8 +41,8 @@
 
               <script>
                 const validUsers = [
-                    { name: "Jaime", apellido: "Rodriguez", code: "C123456"},
-                    { name: "Analia", apellido: "Castellanos", code: "C654321"}
+                    { empresa: "BCP", nombre: "Jaime", apellido: "Rodriguez", code: "C123456"},
+                    { empresa: "BCP", nombre: "Analia", apellido: "Castellanos", code: "C654321"}
                 ];
 
                   
@@ -60,7 +60,9 @@
                     localStorage.setItem("empresa", empresa);
 
                     const match = validUsers.find(user =>
+                        user.empresa === empresa &&
                         user.nombre.toLowerCase() === nombre.toLowerCase() &&
+                        user.apellido.toLowerCase() === apellido.toLowerCase() &&
                         user.code === code
                     );
 
