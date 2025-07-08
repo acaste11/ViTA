@@ -36,12 +36,12 @@
               </form>
 
               <script>
-                const validUsers = [
+                /*const validUsers = [
                     { empresa: "bcp", nombre: "jaime", apellido: "rodriguez", code: "C123456"},
                     { empresa: "bcp", nombre: "analia", apellido: "castellanos", code: "C654321"}
-                ];
+                ];*/
 
-                function validateUser(event) {
+                async function validateUser(event) {
                     event.preventDefault();
                     
                     const nombre = document.getElementById("nombre").value.trim().toLowerCase();
@@ -54,10 +54,45 @@
                     localStorage.setItem("code", code);
                     localStorage.setItem("empresa", empresa);
 
-                    console.log("Input values:", {empresa, nombre, apellido, code});
-                    console.log("Valid users:", validUsers);
+                    const sheetDBurl = "https://sheetdb.io/api/v1/iarldsdgr9mxt";
+
+                    try {
+                        const response = await fetch(`${sheetDBurl}?userId=${encodeURIComponent(code)}`);
+                        if (!response.ok) {
+                            alert("Error al obtener usuarios del servidor.");
+                            return;
+                        }
+                        const data = await response.json();
+
+                        if (data.length === 0) {
+                            alert("Código de usuario no encontrado.");
+                            return;
+                        }
+
+                        const user = data.find(row =>
+                            row.userId === code &&
+                            row.firstName.toLowerCase() === nombre &&
+                            row.lastName.toLowerCase() === apellido &&
+                            row.empresa.toLowerCase() === empresa
+                        );
+
+                        if (user) {
+                            localStorage.setItem("authorized", "true");
+                            window.location.href = "successE.html";
+                        }else{
+                            alert("Información no coincide con el código.");
+                        }
+                    } catch (error) {
+                        alert("Error al validar usuario.");
+                        console.error(error);
+                    }
+                }
+
+                    //debug:
+                    //console.log("Input values:", {empresa, nombre, apellido, code});
+                    //console.log("Valid users:", validUsers);
                     
-                    const match = validUsers.find(user =>
+                    /*const match = validUsers.find(user =>
                         user.empresa === empresa &&
                         user.nombre.toLowerCase() === nombre.toLowerCase() &&
                         user.apellido.toLowerCase() === apellido.toLowerCase() &&
@@ -73,7 +108,7 @@
                     else {
                         alert("Información incorrecta");
                     }
-                }
+                }*/
               </script>
         </main>
     </body>
