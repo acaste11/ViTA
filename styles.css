@@ -132,6 +132,12 @@ nav a.content.active{
   margin-top: 8px;
 }
 
+.inline-fields label {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 input.product-input {
   display: block;
   width: 100%;
@@ -228,12 +234,8 @@ label {
 .product-entry {
   display: flex;
   gap: 10px;
-  margin-bottom: 10px;
-  align-items: center;
-}
-
-.product-entry label {
-  flex: 1;
+  margin-bottom: 15px;
+  flex-direction: column;
 }
 
 .product-entry button {
