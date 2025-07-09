@@ -79,10 +79,21 @@ nav a.content.active{
 
 /* Content sections */
 .content {
+  justify-content: center;
+  text-align: center;
   display: none;
   padding: 30px;
   max-width: 1200px;
   margin: auto;
+}
+
+.content h3{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.content button {
+  margin: 20px;
 }
 
 .content.active {
@@ -220,6 +231,7 @@ label {
 
 .productos-item img {
   width: 100%;
+  max-width: 400px;
   height: auto;
   border: 6px solid #f6c8a3;
   border-radius: 20px;
