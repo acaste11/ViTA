@@ -129,7 +129,6 @@ nav a.content.active{
 .inline {
   display: flex;
   gap: 20px;
-  flex-wrap: wrap; 
   margin-top: 8px;
 }
 
