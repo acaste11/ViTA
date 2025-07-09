@@ -132,15 +132,6 @@ nav a.content.active{
   margin-top: 8px;
 }
 
-.inline-fields .field {
-  flex: 1;
-}
-
-.inline-fields label {
-  display: flex;
-  flex-direction: column;
-}
-
 input.product-input {
   display: block;
   width: 100%;
