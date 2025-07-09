@@ -243,22 +243,24 @@
     
                 //add inputs
                 productDiv.innerHTML = `
-                  <label>Producto:
-                      <input type="text" name="productName[]" class="product-input" list="productos" required>
-                  </label>
-            
-                  <div class="inline-fields">
-                    <div class="field">
-                      <label>Cantidad:</label>
+                <label>Producto:
+                <input type="text" name="productName[]" class="product-input" list="productos" required>
+                </label>
+
+                <div class="inline-fields">
+                  <div class="field">
+                    <label>Cantidad:
                       <input type="number" name="productQty[]" min="1" required>
-                    </div>
-                    <div class="field">
-                      <label>Precio (por unidad):</label>
-                      <input type="number" name="productPrice[]" readonly>
-                    </div>
+                    </label>
                   </div>
-            
-                  <button type="button" onclick="removeProduct(this)">x Quitar este producto</button>
+                  <div class="field">
+                    <label>Precio (por unidad):
+                      <input type="number" name="productPrice[]" readonly>
+                    </label>
+                  </div>
+                </div>
+
+                <button type="button" onclick="removeProduct(this)">x Quitar este producto</button>
                 `;
                 container.insertBefore(productDiv, container.lastElementChild);
                 updateTotal();
