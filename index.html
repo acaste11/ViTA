@@ -143,7 +143,7 @@
               return;
             }
           } catch (error) {
-            alert("Error al verificar eixistencia del usuario.");
+            alert("Error al verificar existencia del usuario.");
             console.error(error);
             return;
           }
@@ -164,7 +164,7 @@
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer https://sheetdb.io/api/v1/prdxxll5rtg9w"
+                //"Authorization": "Bearer https://sheetdb.io/api/v1/prdxxll5rtg9w"
               },
               body: JSON.stringify(data)
             });
