@@ -45,16 +45,18 @@
               <div class="product-entry">
                 <label>Producto:
                   <input type="text" name="productName[]" class="product-input" list="productos" required>
-                    
                 </label>
 
-                <label>Cantidad:
-                  <input type="number" name="productQty[]" min="1" required>
-                </label>
-
-                <label>Precio (por unidad):
-                    <input type="number" name="productPrice[]" readonly>
-                </label>
+                <div class="inline">
+                    <label>Cantidad:
+                      <input type="number" name="productQty[]" min="1" required>
+                    </label>
+    
+                    <label>Precio (por unidad):
+                        <input type="number" name="productPrice[]" readonly>
+                    </label>
+                </div>
+                  
                 <button type="button" onclick="removeProduct(this)">x Quitar este producto</button>
               </div>
 
