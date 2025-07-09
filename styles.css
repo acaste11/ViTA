@@ -133,10 +133,12 @@ nav a.content.active{
 }
 
 .inline-fields .field {
+  flex: 1;
+}
+
+.inline-fields label {
   display: flex;
   flex-direction: column;
-  flex: 1;
-  min-width: 150px;
 }
 
 input.product-input {
