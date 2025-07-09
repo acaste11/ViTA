@@ -128,7 +128,27 @@
           }
   
           const userId = `C${carnet}`;
-  
+
+          //check if user already exists
+          try {
+            const checkResponse = await fetch(`${sheetDBurl}?userId=${encodeURIComponent(userId)}`);
+            if (!checkResponse.ok) {
+              alert("No se pudo verificar si el usuario ya existe.");
+              return;
+            }
+
+            const existingData = await checkResponse.json();
+            if(existingData.length > 0) {
+              alert(`El usuario con código ${userId} ya está registrado.`);
+              return;
+            }
+          } catch (error) {
+            alert("Error al verificar eixistencia del usuario.");
+            console.error(error);
+            return;
+          }
+
+          //si no existe, continuar
           //prepare data for sheet
           const data = {
             data: {
@@ -139,8 +159,6 @@
           };
   
           try {
-            //check for user
-  
             //tod add new user
             const response = await fetch(sheetDBurl, {
               method: "POST",
