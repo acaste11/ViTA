@@ -126,6 +126,18 @@ nav a.content.active{
   border-radius: 12px;
 }
 
+.inline {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap; 
+  margin-top: 8px;
+}
+
+.inline label {
+  display: flex;
+  flex-direction: column;
+}
+
 input.product-input {
   display: block;
   width: 100%;
