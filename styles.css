@@ -239,14 +239,14 @@ label {
   min-width: 400px;
 }
 
-.product-input.narrow {
+/*.product-input.narrow {
   width: 200px;
   transition: width 0.3s ease;
 }
 
 .product-input.narrow:focus {
   width: 500px;
-}
+}*/
 
 .productos-item {
   text-align: center;
