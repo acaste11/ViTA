@@ -256,19 +256,20 @@
             };
             
             document.addEventListener('input', (e) => {
-              if (e.target.matches('input.product-input')) 
-              {
-                const name = e.target.value;
-                const priceField = e.target.closest('.product-entry').querySelector('input[name="productPrice[]"]');
-                if (priceField) {
-                  priceField.value = priceList[name] ?? '';
+                const isProductInput = e.target.matches('input.product-input') || e.target.matches('select.product-input');
+                
+                if(isProductInput) {
+                    const name = e.target.value;
+                    const priceField = e.target.closest('.product-entry').querySelector('input[name="productPrice[]"]');
+                    if (priceField) {
+                        priceField.value = priceList[name] ?? '';
+                    }
+                    updateTotal();
                 }
-                updateTotal(); 
-              }
-            
-              if (e.target.matches('input[name="productQty[]"]')) {
-                updateTotal();
-              }
+
+                if (e.target.matches('input[name="productQty[]"]')) {
+                    updateTotal();
+                }
             });
 
             function addProduct() {
@@ -310,7 +311,7 @@
                 updateTotal();
               }
             
-              document.addEventListener("input", function (e) 
+              /*document.addEventListener("input", function (e) 
               {
                 if (e.target.classList.contains("product-input"))
                 {
@@ -320,7 +321,7 @@
                     const priceField = e.target.closest(".product-entry").querySelector('input[name="productPrice[]"]');
                     if (priceField) priceField.value = price;
                   }
-              });
+              });*/
             
               document.getElementById('survey-form').addEventListener('submit', () => {
                  localStorage.removeItem("authorized");
