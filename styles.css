@@ -26,10 +26,16 @@ header {
   padding: 20px;
   justify-content: center;
   background-color: #fcffff;
+  text-shadow: 2px 2px #7d9cc3;
 }
 
 header img {
   max-height: 80px;
+}
+
+h2 {
+  font-style: italic;
+  margin: 20px;
 }
 
 footer {
@@ -46,7 +52,6 @@ img {
 #title {
   font-size: 2em;
   color: #0066cc;
-  text-shadow: 2px 2px #7d9cc3;
 }
 
 /* Description */
@@ -141,6 +146,7 @@ nav a.content.active{
   justify-content: center;
   gap: 20px;
   background-color: #f5bf93;
+  margin-top: 30px;
 }
 
 .home-content img {
