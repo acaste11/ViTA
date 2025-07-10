@@ -34,7 +34,8 @@ header img {
 
 footer {
   text-align: center;
-  background-color: #7d9cc3;
+  background-color: #f5bf93;
+  justify-content: center;
 }
 
 img {
@@ -45,7 +46,7 @@ img {
 #title {
   font-size: 2em;
   color: #0066cc;
-  text-shadow: 2px 2px #ff0000;
+  text-shadow: 2px 2px #7d9cc3;
 }
 
 /* Description */
