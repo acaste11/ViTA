@@ -32,6 +32,11 @@ header img {
   max-height: 80px;
 }
 
+footer {
+  text-align: center;
+  background-color: #7d9cc3;
+}
+
 img {
   max-width: 100%;
   height: auto;
