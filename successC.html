@@ -117,6 +117,7 @@
             </label>
 
             <datalist id="productos">
+                <option value="">Seleccione un producto</option>
                 <option value="ACONDICIONADOR AVENA C.L. X 350 mL">
                 <option value="ACONDICIONADOR AVENA C.L. X 700 mL">
                 <option value="ACONDICIONADOR FRUTILLA C.L. X 350 mL">
@@ -214,6 +215,7 @@
               document.getElementById('totalDisplay').textContent = total.toFixed(2);
             }
             const priceList = {
+                "": 0,
                 "ACONDICIONADOR AVENA C.L. X 350 mL": 32, 
                 "ACONDICIONADOR AVENA C.L. X 700 mL": 42, 
                 "ACONDICIONADOR FRUTILLA C.L. X 350 mL": 32, 
