@@ -40,7 +40,7 @@ h2 {
 
 footer {
   text-align: center;
-  background-color: #f5bf93;
+  background-color: #7d9cc3;
   justify-content: center;
 }
 
@@ -93,7 +93,6 @@ nav a.content.active{
 .information {
   justify-content: center;
   text-align: center;
-  display: none;
   padding: 30px;
   max-width: 1200px;
   margin: auto;
