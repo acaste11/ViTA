@@ -14,10 +14,10 @@
       <p id="description">ViTA es vida</p>
 
     <nav>
-      <a href="#" onclick="event.preventDefault(); showContent('vita')">Sobre VITA</a>
-      <a href="#" onclick="event.preventDefault(); showContent('productos')">Productos</a>
-      <a href="#" onclick="event.preventDefault(); showContent('pedidos')">Pedidos</a>
-      <a href="#" onclick="event.preventDefault(); showContent('unirse')">¡Únete!</a>
+      <a href="#vita">Sobre VITA</a>
+      <a href="#productos">Productos</a>
+      <a href="#pedidos">Pedidos</a>
+      <a href="#unirse">¡Únete!</a>
     </nav>
 
     <main>
@@ -112,83 +112,90 @@
       const sheetDBurl = "https://sheetdb.io/api/v1/prdxxll5rtg9w";
       //const form = document.querySelector('#unirse form');
 
-      window.onload = function() {
-        document.getElementById('registration-form').addEventListener('submit', async (event) => {
-          event.preventDefault();
-  
-          //debug
-          console.log(
-            "join-name:", document.getElementById('join-name'),
-            "join-lastname:", document.getElementById('join-lastname'),
-            "carnet:", document.getElementById('carnet')
-          );
-  
-  
-          const firstName = document.getElementById('join-name').value.trim();
-          const lastName = document.getElementById('join-lastname').value.trim();
-          const carnet = document.getElementById('carnet').value.trim();
-  
-          if (!firstName || !lastName || !carnet) {
-            alert("Por favor llene todos los campos");
-            return;
-          }
-  
-          const userId = `C${carnet}`;
-          console.log("userId:", document.getElementById('userId'));
-
-          //check if user already exists
-          try {
-            const checkResponse = await fetch(`${sheetDBurl}?userId=${encodeURIComponent(userId)}`);
-            if (!checkResponse.ok) {
-              alert("No se pudo verificar si el usuario ya existe.");
+      function showContentFromHash() {
+        const hash = window.location.hash.substring(1) || "vita";
+        const sections = document.querySelectorAll('.content');
+        sections.forEach(section => section.classList.remove('active'));
+        const selected = document.getElementById(hash);
+        if (selected) {
+          selected.classList.add('active');
+        }
+      }
+      
+      window.onload = () => {
+        // Show the correct section based on the hash in the URL
+        showContentFromHash();
+        window.onhashchange = showContentFromHash;
+      
+        // Add event listener for the registration form
+        const form = document.getElementById('registration-form');
+        if (form) {
+          form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+      
+            const firstName = document.getElementById('join-name').value.trim();
+            const lastName = document.getElementById('join-lastname').value.trim();
+            const carnet = document.getElementById('carnet').value.trim();
+      
+            if (!firstName || !lastName || !carnet) {
+              alert("Por favor llene todos los campos");
               return;
             }
-
-            const existingData = await checkResponse.json();
-            if(existingData.length > 0) {
-              alert(`El usuario con código ${userId} ya está registrado.`);
+      
+            const userId = `C${carnet}`;
+      
+            const sheetDBurl = "https://sheetdb.io/api/v1/prdxxll5rtg9w";
+      
+            try {
+              const checkResponse = await fetch(`${sheetDBurl}/search?userId=${encodeURIComponent(userId)}`);
+              if (!checkResponse.ok) {
+                alert("No se pudo verificar si el usuario ya existe.");
+                return;
+              }
+      
+              const existingData = await checkResponse.json();
+              if (existingData.length > 0) {
+                alert(`El usuario con código ${userId} ya está registrado.`);
+                return;
+              }
+            } catch (error) {
+              alert("Error al verificar existencia del usuario.");
+              console.error(error);
               return;
             }
-          } catch (error) {
-            alert("Error al verificar existencia del usuario.");
-            console.error(error);
-            return;
-          }
+      
+            const data = {
+              data: {
+                firstName: firstName,
+                lastName: lastName,
+                userId: userId
+              }
+            };
+      
+            try {
+              const response = await fetch(sheetDBurl, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+              });
+      
+              if (response.ok) {
+                alert(`¡Gracias por registrarse! Su código de usuario es: ${userId}`);
+                event.target.reset();
+              } else {
+                alert("Error al registrarse. Por favor, inténtelo nuevamente.");
+                console.error("Error response:", response);
+              }
+            } catch (error) {
+              alert("Error al enviar datos al servidor.");
+              console.error(error);
+            }
+          });
+        }
+      };
 
-          //si no existe, continuar
-          //prepare data for sheet
-          const data = {
-            data: {
-              firstName: firstName, 
-              lastName: lastName,
-              userId: userId
-            }
-          };
-  
-          try {
-            //tod add new user
-            const response = await fetch(sheetDBurl, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                //"Authorization": "Bearer https://sheetdb.io/api/v1/prdxxll5rtg9w"
-              },
-              body: JSON.stringify(data)
-            });
-  
-            if (response.ok) {
-              alert(`¡Gracias por registrarse! Su código de usuario es: ${userId}`);
-              event.target.reset();
-            } else {
-              alert("Error al registrarse. Por favor, inténtelo nuevamente.");
-              console.error("Error response:", response);
-            }
-          }catch (error) {
-            alert("Error al enviar datos al servidor.");
-            console.error(error);
-          }
-        });
-      } 
     </script>
   </body>
 </html>
