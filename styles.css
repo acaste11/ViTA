@@ -235,17 +235,17 @@ label {
 }
 
 .product-input{
-  width: 400px;
-  min-width: 300px;
+  width: 500px;
+  min-width: 400px;
 }
 
 .product-input.narrow {
-  width: 120px;
+  width: 200px;
   transition: width 0.3s ease;
 }
 
 .product-input.narrow:focus {
-  width: 400px;
+  width: 500px;
 }
 
 .productos-item {
