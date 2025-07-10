@@ -239,6 +239,15 @@ label {
   min-width: 300px;
 }
 
+.product-input.narrow {
+  width: 120px;
+  transition: width 0.3s ease;
+}
+
+.product-input.narrow:focus {
+  width: 400px;
+}
+
 .productos-item {
   text-align: center;
   max-width: 200px;
