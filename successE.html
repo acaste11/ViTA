@@ -15,7 +15,7 @@
         <main>
             <form id="survey-form" onsubmit="sendToGoogleSheet(event)">
                 <p><strong>Empresa:</strong> <span id="empresaDisplay"></span></p>
-                <input id="empresa-nombre" type="hidden" name="empresa-nombre" value="">
+                <input id="empresa" type="hidden" name="empresa" value="">
 
                 <label for="ciudad">Ciudad:
                     <input id="ciudad-nombre" type="text" name="ciudad-nombre" placeholder="La Paz" required>
@@ -227,12 +227,12 @@
 
           //automatic name and empresa
           window.onload = function() {
-              const storedEmpresa = localStorage.getItem("empresa-nombre") || "";
+              const storedEmpresa = localStorage.getItem("empresa") || "";
               const storedNombre = localStorage.getItem("nombre") || "";
               const storedApellido = localStorage.getItem("apellido") || "";
 
               document.getElementById("empresaDisplay").textContent = capitalizeWords(storedEmpresa);
-              document.getElementById("empresa-nombre").value = storedEmpresa;
+              document.getElementById("empresa").value = storedEmpresa;
               console.log("Empresa cargada:", storedEmpresa);
               
               document.getElementById("nombreDisplay").textContent = capitalizeWords(storedNombre);
@@ -336,7 +336,7 @@
               const prices = formData.getAll("productPrice[]");
             
               const sharedData = {
-                "empresa-nombre": formData.get("empresa-nombre"),
+                "empresa": formData.get("empresa"),
                 "ciudad-nombre": formData.get("ciudad-nombre"),
                 "nombre": formData.get("nombre"),
                 "apellido": formData.get("apellido"),
@@ -345,7 +345,7 @@
                 "direccion": formData.get("direccion"),
               };
                 //debug sharedData
-              console.log("Empresa enviada:", formData.get("empresa-nombre"));
+              console.log("Empresa enviada:", formData.get("empresa"));
               
               const submissionPromises = names.map((name, i) => {
                   if (!name || !qtys[i] || !prices[i]) return null;
