@@ -44,10 +44,10 @@
                 async function validateUser(event) {
                     event.preventDefault();
                     
-                    const nombre = document.getElementById("nombre").value.trim();
-                    const apellido = document.getElementById("apellido").value.trim();
+                    const nombre = document.getElementById("nombre").value.trim().toLowerCase();
+                    const apellido = document.getElementById("apellido").value.trim().toLowerCase();
                     const code = document.getElementById("code").value.trim();
-                    const empresa = document.getElementById("empresa-nombre").value.trim();
+                    const empresa = document.getElementById("empresa-nombre").value.trim().toLowerCase();
 
                     localStorage.setItem("nombre", nombre);
                     localStorage.setItem("apellido", apellido);
