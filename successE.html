@@ -233,6 +233,7 @@
 
               document.getElementById("empresaDisplay").textContent = capitalizeWords(storedEmpresa);
               document.getElementById("empresa-nombre").value = storedEmpresa;
+              console.log("Empresa cargada:", storedEmpresa);
               
               document.getElementById("nombreDisplay").textContent = capitalizeWords(storedNombre);
               document.getElementById("nombre").value = storedNombre;
@@ -343,7 +344,9 @@
                 "email": formData.get("email"),
                 "direccion": formData.get("direccion"),
               };
-
+                //debug sharedData
+              console.log("Empresa enviada:", formData.get("empresa-nombre"));
+              
               const submissionPromises = names.map((name, i) => {
                   if (!name || !qtys[i] || !prices[i]) return null;
 
