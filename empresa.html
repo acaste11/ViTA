@@ -71,9 +71,12 @@
 
                         const user = data.find(row =>
                             row.userId === code &&
-                            row.firstName.toLowerCase() === nombre &&
+                            /*row.firstName.toLowerCase() === nombre &&
                             row.lastName.toLowerCase() === apellido &&
-                            row.empresa.toLowerCase() === empresa
+                            row.empresa.toLowerCase() === empresa*/
+                            row.firstName === nombre &&
+                            row.lastName === apellido &&
+                            row.empresa === empresa
                         );
 
                         if (user) {
