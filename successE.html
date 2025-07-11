@@ -248,7 +248,7 @@
                     const name = e.target.value;
                     const priceField = e.target.closest('.product-entry').querySelector('input[name="productPrice[]"]');
                     if (priceField) {
-                        priceField.value = priceList[name] ?? '';
+                        priceField.value = priceList[name]?.price ?? '';
                     }
                     updateTotal();
                 }
@@ -268,7 +268,10 @@
             //add inputs
             productDiv.innerHTML = `
             <label>Producto:
-            <input type="text" name="productName[]" class="product-input" list="productos" required>
+                <select name="productName[]" class="product-input" required>
+                  <option value="">Seleccione un producto</option>
+                  ${Object.keys(priceList).map(name => `<option value="${name}">${name}</option>`).join("")}
+                </select>            
             </label>
 
             <div class="inline-fields">
@@ -349,6 +352,7 @@
                   
                   const row = {
                       ...sharedData,
+                      "fecha": new Date().toLocaleString(),
                       "producto": name,
                       "codigo": code,
                       "cantidad": qtys[i],
