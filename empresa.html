@@ -13,8 +13,8 @@
         </header>
         <main>
             <form id="login" action="successE.html" method="get" onsubmit="validateUser(event)">
-                <label for="empresa-nombre">Seleccione su empresa:</label>
-                  <select id="empresa-nombre" name="empresa-nombre" required>
+                <label for="empresa">Seleccione su empresa:</label>
+                  <select id="empresa" name="empresa" required>
                     <option value="">(seleccionar)</option>
                     <option>Banco Unión</option>
                     <option>BCP</option>
@@ -47,12 +47,12 @@
                     const nombre = document.getElementById("nombre").value.trim().toLowerCase();
                     const apellido = document.getElementById("apellido").value.trim().toLowerCase();
                     const code = document.getElementById("code").value.trim();
-                    const empresa = document.getElementById("empresa-nombre").value.trim().toLowerCase();
+                    const empresa = document.getElementById("empresa").value.trim().toLowerCase();
 
                     localStorage.setItem("nombre", nombre);
                     localStorage.setItem("apellido", apellido);
                     localStorage.setItem("code", code);
-                    localStorage.setItem("empresa-nombre", empresa);
+                    localStorage.setItem("empresa", empresa);
 
                     const sheetDBurl = "https://sheetdb.io/api/v1/iarldsdgr9mxt";
 
