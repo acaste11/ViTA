@@ -179,6 +179,10 @@
                 const storedNombre = localStorage.getItem("nombre") || "";
                 const storedApellido = localStorage.getItem("apellido") || "";
 
+                //debug, check in console
+                console.log("Nombre from localStorage:", localStorage.getItem("nombre"));
+                console.log("Apellido from localStorage:", localStorage.getItem("apellido"));
+
                 //capitalized
                 document.getElementById("nombreDisplay").textContent = capitalizeWords(storedNombre);
                 document.getElementById("nombre").value = storedNombre;
