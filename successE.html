@@ -344,9 +344,13 @@
               const submissionPromises = names.map((name, i) => {
                   if (!name || !qtys[i] || !prices[i]) return null;
 
+                  const productInfo = priceList[name] || {};
+                  const code = productInfo.code ||"";
+                  
                   const row = {
                       ...sharedData,
                       "producto": name,
+                      "codigo": code,
                       "cantidad": qtys[i],
                       "precio": prices[i],
                       "subtotal": (parseInt(qtys[i]) * parseFloat(prices[i])).toFixed(2)
