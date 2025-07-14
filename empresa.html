@@ -63,7 +63,13 @@
                             return;
                         }
                         const data = await response.json();
+
+                        //debug
                         console.log("SheetDB response:", data);
+                        const row = data[0];
+                        console.log("From SheetDB →", row.firstName, row.lastName, row.empresa);
+                        console.log("From Form →", nombre, apellido, empresa);
+                        
                         if (data.length === 0) {
                             alert("Código de usuario no encontrado.");
                             return;
