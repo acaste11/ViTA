@@ -108,7 +108,7 @@
                 <input id="apellido" type="hidden" name="apellido" value="">
 
                 <label for="numero">Numero de contacto:
-                    <input id="numero-contacto" type="text" name="numero-contacto" size="30" placeholder="12345678">
+                    <input id="numero-contacto" type="text" name="numero-contacto" size="30" value="+591 " maxlength="13"placeholder="12345678">
                 </label>
 
                 <label for="email">Correo electrónico: 
@@ -224,6 +224,14 @@
           function capitalizeWords(str) {
               return str.replace(/\b\w/g, char => char.toUpperCase());
           }
+
+          const numeroInput = document.getElementById("numero-contacto");
+
+          numeroInput.addEventListener("input", () => {
+            if (!numeroInput.value.startsWith("+591")) {
+              numeroInput.value = "+591";
+            }
+          });
 
           //automatic name and empresa
           window.onload = function() {
